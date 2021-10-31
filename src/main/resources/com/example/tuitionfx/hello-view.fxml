@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tuitionfx.HelloController">
    <top>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -60,8 +60,11 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="Resident" />
-                                    <RadioButton mnemonicParsing="false" text="Non-Resident" />
+                                    <RadioButton mnemonicParsing="false" text="Resident">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="residentialStatus" />
+                                       </toggleGroup></RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="Non-Resident" toggleGroup="$residentialStatus" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -78,11 +81,11 @@
                                  </children>
                               </HBox>
                               <Label text="Credit Hours" GridPane.rowIndex="5" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField fx:id="creditHours" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="231.0" text="Add Student" />
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Remove Student" />
+                                    <Button mnemonicParsing="false" onAction="#addStudent" prefHeight="25.0" prefWidth="231.0" text="Add Student" />
+                                    <Button mnemonicParsing="false" onAction="#removeStudent" prefHeight="25.0" prefWidth="162.0" text="Remove Student" />
                                  </children>
                               </HBox>
                            </children>

@@ -125,7 +125,7 @@ public class TuitionManager {
             finalizeAddStudent(rosterCollection, newResidentStudent);
         }
         else if(addType.equals("AN")) {
-            Student newNonResidentStudent = new NonResident(name, addMajor, intCredits);
+            Student newNonResidentStudent =  new NonResident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newNonResidentStudent);
         }
         else if(addType.equals("AT")) {
