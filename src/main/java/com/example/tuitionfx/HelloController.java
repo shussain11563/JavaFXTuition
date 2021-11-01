@@ -309,7 +309,7 @@ public class HelloController
     {
         String name = "";
         Major addMajor;
-        if(checkAddStudent())
+        if(checkRemoveStudent())
         {
             name = this.studentName.getText();
             addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
@@ -322,9 +322,9 @@ public class HelloController
         Student tempStudent = new Student(name,addMajor);
 
         if(this.roster.remove(tempStudent))
-            System.out.println("Student removed from the roster.");
+            textArea.appendText("Student removed from the roster.\n");
         else
-            System.out.println("Student is not in the roster.");
+            textArea.appendText("Student is not in the roster.\n");
 
     }
 
@@ -388,44 +388,63 @@ public class HelloController
         String buttonName = ((RadioButton) residentialStatus.getSelectedToggle()).getText();
         disable = buttonName.equals("Resident") ? true : false;
 
-        for(var toggle : nonResidentOptions.getToggles())
+        for(var toggle : this.nonResidentOptions.getToggles())
         {
+            //uncheck box it
+            toggle.setSelected(false);
             ((RadioButton) toggle).setDisable(disable);
         }
+
+        if(buttonName.equals("Resident"))
+        {
+            for(var toggle : this.tristateState.getToggles())
+            {
+                toggle.setSelected(false);
+                ((RadioButton) toggle).setDisable(disable);
+            }
+
+            this.isStudyAbroadCheckBox.setSelected(false);
+            this.isStudyAbroadCheckBox.setDisable(disable);
+        }
+
+
+
+
     }
 
     @FXML
     void nonResidentSubMenu(ActionEvent event)
     {
 
-
         String buttonName = ((RadioButton) this.nonResidentOptions.getSelectedToggle()).getText();
 
-        System.out.println(buttonName);
         if(buttonName.equals("Tristate"))
         {
             for(var toggle : this.tristateState.getToggles())
             {
-                ((RadioButton) toggle).setDisable(false);
 
+                ((RadioButton) toggle).setDisable(false);
+                //System.out.println();
+
+
+                this.isStudyAbroadCheckBox.setSelected(false);
                 this.isStudyAbroadCheckBox.setDisable(true);
+
+
             }
         }
         else if(buttonName.equals("International"))
         {
             for(var toggle : this.tristateState.getToggles())
             {
+                toggle.setSelected(false);
                 ((RadioButton) toggle).setDisable(true);
             }
 
-            this.isStudyAbroadCheckBox.setDisable(false);
-            //
-            //disable tristate
-            //disable tristate staes
-        }
 
-        //disable = buttonName.equals("Tristate") ? true : false;
-        //toggleGroup = buttonName.equals("Tristate") ? this.tristateState : this
+            this.isStudyAbroadCheckBox.setDisable(false);
+            //fix checkbox
+        }
 
 
 
