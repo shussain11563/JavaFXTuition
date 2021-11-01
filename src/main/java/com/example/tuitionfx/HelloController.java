@@ -44,14 +44,6 @@ public class HelloController
     @FXML
     private ToggleGroup tristateState;
 
-    //-----ADD STUDENT
-
-    void validateInformation()
-    {
-        //String studentName;
-
-    }
-
 
     @FXML
     void addStudent(ActionEvent event)
@@ -62,10 +54,24 @@ public class HelloController
         if(checkAddStudent())
         {
             name = this.studentName.getText();
-            //addType = stringTokenizer.nextToken();
+            //addType =
+            addType = ((RadioButton) this.residentialStatus.getSelectedToggle()).getText();
             addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
             credits = this.creditHours.getText();
 
+            RadioButton nonResidentOptions = ((RadioButton) this.residentialStatus.getSelectedToggle());
+            if(nonResidentOptions != null)
+            {
+                addType = nonResidentOptions.getText();
+                if(addType.equals("Tristate"))
+                {
+                    additionalInfo = ((RadioButton) this.tristateState.getSelectedToggle()).getText();
+                }
+                else if(addType.equals("International"))
+                {
+                    additionalInfo = isStudyAbroadCheckBox.isSelected() ? "true" : "false";
+                }
+            }
         }
         else
         {
@@ -82,14 +88,9 @@ public class HelloController
         if(!checkMinMaxCredits(intCredits))
             return;
 
-        try {
-            //additionalInfo = stringTokenizer.nextToken();
-        }
-        catch (NoSuchElementException ex1) {
-        }
+
 
         //addType Test
-        addType = "Resident";
         runProcessAddStudent(this.roster, addType, name, addMajor, intCredits, additionalInfo);
     }
 
@@ -187,12 +188,31 @@ public class HelloController
         }
 
         //needs more choices for nonresident and tuition
-        RadioButton status = (RadioButton) major.getSelectedToggle();
-        if(majorButton == null)
+        //RadioButton majorButton = (RadioButton) major.getSelectedToggle();
+        RadioButton status = (RadioButton) this.residentialStatus.getSelectedToggle();
+        if(status == null)
         {
-            textArea.appendText("Major not selected.\n");
+            textArea.appendText("Residential status not selected.\n");
             return false;
         }
+
+        RadioButton nonResidentOptionButton = (RadioButton) this.nonResidentOptions.getSelectedToggle();
+        if(nonResidentOptionButton != null && nonResidentOptionButton.getText().equals("Tristate"))
+        {
+            RadioButton states = (RadioButton) this.tristateState.getSelectedToggle();
+            if (states == null)
+            {
+                textArea.appendText("No tristate area selected.\n");
+                return false;
+            }
+            //if
+        }
+        /*
+        else if(status.getText().equals("Non-Resident"))
+        {
+            //we
+
+        }*/
         //else if nonresident and tristate selected but no state
 
 
@@ -214,12 +234,12 @@ public class HelloController
             finalizeAddStudent(rosterCollection, newResidentStudent);
         }
         //change addtype
-        else if(addType.equals("AN")) {
+        else if(addType.equals("Non-Resident")) {
             Student newNonResidentStudent = new NonResident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newNonResidentStudent);
         }
         //change addtype
-        else if(addType.equals("AT")) {
+        else if(addType.equals("Tristate")) {
             additionalInfo = additionalInfo.toUpperCase();
             //change addtype
             if(additionalInfo.equals("NY") || additionalInfo.equals("CT")) {
@@ -231,7 +251,7 @@ public class HelloController
             else if(additionalInfo.equals(""))
             {
                 //CHANGE THIS
-                textArea.appendText("Missing data in command line.\n");
+                textArea.appendText("No Tristate Area selected.\n");
                 return;
             }
             else
@@ -242,7 +262,8 @@ public class HelloController
             }
         }
         //change addtype
-        else if(addType.equals("International")) {
+        else if(addType.equals("International"))
+        {
             if(intCredits < 12)
             {
                 textArea.appendText("International students must enroll at least 12 credits.\n");
@@ -378,7 +399,7 @@ public class HelloController
     {
 
 
-        String buttonName = ((RadioButton) residentialStatus.getSelectedToggle()).getText();
+        String buttonName = ((RadioButton) this.nonResidentOptions.getSelectedToggle()).getText();
 
         System.out.println(buttonName);
         if(buttonName.equals("Tristate"))
@@ -386,10 +407,19 @@ public class HelloController
             for(var toggle : this.tristateState.getToggles())
             {
                 ((RadioButton) toggle).setDisable(false);
+
+                this.isStudyAbroadCheckBox.setDisable(true);
             }
         }
         else if(buttonName.equals("International"))
         {
+            for(var toggle : this.tristateState.getToggles())
+            {
+                ((RadioButton) toggle).setDisable(true);
+            }
+
+            this.isStudyAbroadCheckBox.setDisable(false);
+            //
             //disable tristate
             //disable tristate staes
         }

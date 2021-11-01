@@ -152,8 +152,8 @@ public class TuitionManager {
                 return;
             }
             else {
-                boolean isInternational = Boolean.parseBoolean(additionalInfo.toLowerCase());
-                Student newInternationalStudent = new International(name, addMajor, intCredits, isInternational);
+                boolean isStudyAbroad = Boolean.parseBoolean(additionalInfo.toLowerCase());
+                Student newInternationalStudent = new International(name, addMajor, intCredits, isStudyAbroad);
                 finalizeAddStudent(rosterCollection, newInternationalStudent);
             }
         }
