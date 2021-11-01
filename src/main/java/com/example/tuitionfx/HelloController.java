@@ -52,8 +52,55 @@ public class HelloController
     @FXML
     void addStudent(ActionEvent event)
     {
+        String addType = "", name, credits, additionalInfo = "";
         int intCredits = 0;
-        String addType, name, major, credits, additionalInfo = "";
+        Major addMajor;
+        if(checkAddStudent())
+        {
+            name = this.studentName.getText();
+            //addType = stringTokenizer.nextToken();
+            addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
+            credits = this.creditHours.getText();
+
+        }
+        else
+        {
+            return;
+        }
+
+        try {
+            intCredits = Integer.parseInt(credits);
+        }
+        catch (NumberFormatException ex) {
+            textArea.appendText("Invalid credit hours.\n");
+            return;
+        }
+        if(!checkMinMaxCredits(intCredits))
+            return;
+
+        try {
+            //additionalInfo = stringTokenizer.nextToken();
+        }
+        catch (NoSuchElementException ex1) {
+        }
+
+        //addType Test
+        addType = "Resident";
+        runProcessAddStudent(this.roster, addType, name, addMajor, intCredits, additionalInfo);
+    }
+
+
+
+
+
+
+
+
+
+
+        //System.out.println(toogleGroupValue);
+        //int intCredits = 0;
+        //String addType, name, major, credits, additionalInfo = "";
 
         /*
         if(checkAddStudent(this.roster))
@@ -71,10 +118,11 @@ public class HelloController
 
 
 
-        String studentName = this.studentName.getText();
+        //String studentName = this.studentName.getText();
         //cint intCredits;
         //if credit hours
         //System.out.println(major.getSelectedToggle().isSelected());
+        /*
         try
         {
             intCredits = Integer.parseInt(this.creditHours.getText());
@@ -87,17 +135,17 @@ public class HelloController
 
         //get selected RadioButton, needs error handling
         Major addMajor = Major.valueOf(((RadioButton) major.getSelectedToggle()).getText());
-        System.out.println(addMajor);
+        //System.out.println(addMajor);
 
 
         //runProcessAddStudent(this.roster, "TEST",studentName,intCredits,"TEST");
         //fix this
-        runProcessAddStudent(roster, "", studentName, addMajor, intCredits, "");
+        //runProcessAddStudent(roster, "", studentName, addMajor, intCredits, "");
 
 
 
 
-        //RadioButton selectedRadioButton = (RadioButton) major.getSelectedToggle();
+        RadioButton selectedRadioButton = (RadioButton) major.getSelectedToggle();
         //String toogleGroupValue = selectedRadioButton.getText();
         //System.out.println(toogleGroupValue);
 
@@ -115,9 +163,47 @@ public class HelloController
         //test.add()
 
         //
-    }
+    //}
 
-    private boolean checkAddStudent(String name, Major major)
+    //maybe use try catch exceptions
+    private boolean checkAddStudent()
+    {
+
+        //String addType, name, major, originalMajorParameter, credits = "";
+
+        if(studentName.getText().isEmpty())
+        {
+            textArea.appendText("Student name not entered.\n");
+            return false;
+        }
+
+        RadioButton majorButton = (RadioButton) major.getSelectedToggle();
+        if(majorButton == null)
+        {
+            textArea.appendText("Major not selected.\n");
+            return false;
+        }
+
+        //needs more choices for nonresident and tuition
+        RadioButton status = (RadioButton) major.getSelectedToggle();
+        if(majorButton == null)
+        {
+            textArea.appendText("Major not selected.\n");
+            return false;
+        }
+        //else if nonresident and tristate selected but no state
+
+
+
+        if(creditHours.getText().isEmpty())
+        {
+            textArea.appendText("Credit hours missing.\n");
+            return false;
+        }
+
+       //if()
+        return true;
+    }
 
 
     private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo)
@@ -126,17 +212,21 @@ public class HelloController
             Student newResidentStudent = new Resident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newResidentStudent);
         }
+        //change addtype
         else if(addType.equals("AN")) {
             Student newNonResidentStudent = new NonResident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newNonResidentStudent);
         }
+        //change addtype
         else if(addType.equals("AT")) {
             additionalInfo = additionalInfo.toUpperCase();
+            //change addtype
             if(additionalInfo.equals("NY") || additionalInfo.equals("CT")) {
                 State addState = State.valueOf(additionalInfo);
                 Student newTriStateStudent = new TriState(name, addMajor, intCredits, addState);
                 finalizeAddStudent(rosterCollection, newTriStateStudent);
             }
+            //change addtype
             else if(additionalInfo.equals(""))
             {
                 //CHANGE THIS
@@ -150,7 +240,8 @@ public class HelloController
                 return;
             }
         }
-        else if(addType.equals("AI")) {
+        //change addtype
+        else if(addType.equals("International")) {
             if(intCredits < 12)
             {
                 textArea.appendText("International students must enroll at least 12 credits.\n");
@@ -167,7 +258,7 @@ public class HelloController
     private void finalizeAddStudent(Roster rosterCollection, Student student)
     {
         if(rosterCollection.add(student))
-            textArea.appendText("Student added.");
+            textArea.appendText("Student added.\n");
         else {
             textArea.appendText("Student is already in the roster.\n");
         }
