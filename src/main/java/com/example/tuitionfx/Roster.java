@@ -136,7 +136,7 @@ public class Roster {
         resultant += "* list of students in the roster **\n";
 
         for (int i = 0; i < this.size; i++) {
-            resultant += resultant + this.roster[i].toString() + "\n";
+            resultant += this.roster[i].toString() + "\n";
         }
 
         resultant += "* end of roster **\n";
@@ -171,9 +171,10 @@ public class Roster {
         bubbleNullToEnd();
 
         for (int i = 0; i < this.size; i++) {
-            resultant += resultant + this.roster[i].toString() + "\n";
+            resultant += this.roster[i].toString() + "\n";
         }
         resultant += "* end of roster **\n";
+        System.out.println(resultant);
         return resultant;
     }
 
@@ -185,7 +186,7 @@ public class Roster {
     {
         String resultant = "";
         if (this.size == EMPTY) {
-            resultant = "Student roster is empty!\n";
+            resultant += "Student roster is empty!\n";
             return resultant;
         }
 
@@ -203,7 +204,7 @@ public class Roster {
 
         for (int i = 0; i < this.roster.length; i++) {
             if (paymentMades[i] != null) {
-                resultant += resultant + this.roster[i].toString() +"\n";
+                resultant += this.roster[i].toString() +"\n";
             }
         }
 
