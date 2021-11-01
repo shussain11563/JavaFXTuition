@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 
 import java.util.NoSuchElementException;
@@ -24,13 +25,25 @@ public class HelloController
     private TextField creditHours;
 
     @FXML
+    private TextField financialAidAmount;
+
+    @FXML
     private CheckBox isStudyAbroadCheckBox;
 
     @FXML
     private ToggleGroup major;
 
     @FXML
+    private ToggleGroup majorPaymentTab;
+
+    @FXML
     private ToggleGroup nonResidentOptions;
+
+    @FXML
+    private TextField paymentAmount;
+
+    @FXML
+    private DatePicker paymentDate;
 
     @FXML
     private ToggleGroup residentialStatus;
@@ -39,11 +52,13 @@ public class HelloController
     private TextField studentName;
 
     @FXML
+    private TextField studentNamePaymentFinAid;
+
+    @FXML
     private TextArea textArea;
 
     @FXML
     private ToggleGroup tristateState;
-
 
     @FXML
     void addStudent(ActionEvent event)
@@ -59,9 +74,10 @@ public class HelloController
             addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
             credits = this.creditHours.getText();
 
-            RadioButton nonResidentOptions = ((RadioButton) this.residentialStatus.getSelectedToggle());
+            RadioButton nonResidentOptions = ((RadioButton) this.nonResidentOptions.getSelectedToggle());
             if(nonResidentOptions != null)
             {
+
                 addType = nonResidentOptions.getText();
                 if(addType.equals("Tristate"))
                 {
@@ -70,6 +86,7 @@ public class HelloController
                 else if(addType.equals("International"))
                 {
                     additionalInfo = isStudyAbroadCheckBox.isSelected() ? "true" : "false";
+                    System.out.println("Here on line 74");
                 }
             }
         }
@@ -229,6 +246,7 @@ public class HelloController
 
     private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo)
     {
+        System.out.println(addType);
         if(addType.equals("Resident")) {
             Student newResidentStudent = new Resident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newResidentStudent);
@@ -270,8 +288,13 @@ public class HelloController
                 return;
             }
             else {
-                boolean isInternational = Boolean.parseBoolean(additionalInfo.toLowerCase());
-                Student newInternationalStudent = new International(name, addMajor, intCredits, isInternational);
+                boolean isStudyAbroad = Boolean.parseBoolean(additionalInfo.toLowerCase());
+                if(isStudyAbroad == true && intCredits != 12)
+                {
+                    textArea.appendText("International students in the study abroad program must enroll with 12 credits.\n");
+                    return;
+                }
+                Student newInternationalStudent = new International(name, addMajor, intCredits, isStudyAbroad);
                 finalizeAddStudent(rosterCollection, newInternationalStudent);
             }
         }
