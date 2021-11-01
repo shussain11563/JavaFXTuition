@@ -8,10 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 
 import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
 
 public class HelloController
 {
@@ -24,13 +24,25 @@ public class HelloController
     private TextField creditHours;
 
     @FXML
+    private TextField financialAidAmount;
+
+    @FXML
     private CheckBox isStudyAbroadCheckBox;
 
     @FXML
     private ToggleGroup major;
 
     @FXML
+    private ToggleGroup majorPaymentTab;
+
+    @FXML
     private ToggleGroup nonResidentOptions;
+
+    @FXML
+    private TextField paymentAmount;
+
+    @FXML
+    private DatePicker paymentDate;
 
     @FXML
     private ToggleGroup residentialStatus;
@@ -39,11 +51,13 @@ public class HelloController
     private TextField studentName;
 
     @FXML
+    private TextField studentNamePaymentFinAid;
+
+    @FXML
     private TextArea textArea;
 
     @FXML
     private ToggleGroup tristateState;
-
 
     @FXML
     void addStudent(ActionEvent event)
@@ -59,9 +73,10 @@ public class HelloController
             addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
             credits = this.creditHours.getText();
 
-            RadioButton nonResidentOptions = ((RadioButton) this.residentialStatus.getSelectedToggle());
+            RadioButton nonResidentOptions = ((RadioButton) this.nonResidentOptions.getSelectedToggle());
             if(nonResidentOptions != null)
             {
+
                 addType = nonResidentOptions.getText();
                 if(addType.equals("Tristate"))
                 {
@@ -70,6 +85,7 @@ public class HelloController
                 else if(addType.equals("International"))
                 {
                     additionalInfo = isStudyAbroadCheckBox.isSelected() ? "true" : "false";
+                    System.out.println("Here on line 74");
                 }
             }
         }
@@ -88,20 +104,8 @@ public class HelloController
         if(!checkMinMaxCredits(intCredits))
             return;
 
-
-
-        //addType Test
         runProcessAddStudent(this.roster, addType, name, addMajor, intCredits, additionalInfo);
     }
-
-
-
-
-
-
-
-
-
 
         //System.out.println(toogleGroupValue);
         //int intCredits = 0;
@@ -205,30 +209,19 @@ public class HelloController
                 textArea.appendText("No tristate area selected.\n");
                 return false;
             }
-            //if
         }
-        /*
-        else if(status.getText().equals("Non-Resident"))
-        {
-            //we
-
-        }*/
-        //else if nonresident and tristate selected but no state
-
 
         if(creditHours.getText().isEmpty())
         {
             textArea.appendText("Credit hours missing.\n");
             return false;
         }
-
-       //if()
         return true;
     }
 
-
     private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo)
     {
+        System.out.println(addType);
         if(addType.equals("Resident")) {
             Student newResidentStudent = new Resident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newResidentStudent);
@@ -270,8 +263,13 @@ public class HelloController
                 return;
             }
             else {
-                boolean isInternational = Boolean.parseBoolean(additionalInfo.toLowerCase());
-                Student newInternationalStudent = new International(name, addMajor, intCredits, isInternational);
+                boolean isStudyAbroad = Boolean.parseBoolean(additionalInfo.toLowerCase());
+                if(isStudyAbroad == true && intCredits != 12)
+                {
+                    textArea.appendText("International students in the study abroad program must enroll with 12 credits.\n");
+                    return;
+                }
+                Student newInternationalStudent = new International(name, addMajor, intCredits, isStudyAbroad);
                 finalizeAddStudent(rosterCollection, newInternationalStudent);
             }
         }
@@ -303,13 +301,12 @@ public class HelloController
         return true;
     }
 
-
     @FXML
     void removeStudent(ActionEvent event)
     {
         String name = "";
         Major addMajor;
-        if(checkAddStudent())
+        if(checkRemoveStudent())
         {
             name = this.studentName.getText();
             addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
@@ -322,9 +319,9 @@ public class HelloController
         Student tempStudent = new Student(name,addMajor);
 
         if(this.roster.remove(tempStudent))
-            System.out.println("Student removed from the roster.");
+            textArea.appendText("Student removed from the roster.\n");
         else
-            System.out.println("Student is not in the roster.");
+            textArea.appendText("Student is not in the roster.\n");
 
     }
 
@@ -346,39 +343,6 @@ public class HelloController
         return true;
     }
 
-    public void runRemoveStudent(String rosterDetails, Roster rosterCollection) {
-
-        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        String name, major = "";
-
-        stringTokenizer.nextToken();
-        name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken().toUpperCase();
-        Major addMajor = Major.valueOf(major);
-
-        Student tempStudent = new Student(name,addMajor);
-
-        if(rosterCollection.remove(tempStudent))
-            textArea.appendText("Student removed from the roster.\n");
-        else
-            textArea.appendText("Student is not in the roster.\n");
-    }
-
-    /*
-    //make this into one method
-    @FXML
-    void nonResidentMenu(ActionEvent event)
-    {
-
-        for(var toggle : nonResidentOptions.getToggles())
-        {
-            ((RadioButton) toggle).setDisable(false);
-        }
-
-    }
-    */
-
-
     @FXML
     void residentMenu(ActionEvent event)
     {
@@ -388,26 +352,36 @@ public class HelloController
         String buttonName = ((RadioButton) residentialStatus.getSelectedToggle()).getText();
         disable = buttonName.equals("Resident") ? true : false;
 
-        for(var toggle : nonResidentOptions.getToggles())
+        for(var toggle : this.nonResidentOptions.getToggles())
         {
+            //uncheck box it
+            toggle.setSelected(false);
             ((RadioButton) toggle).setDisable(disable);
+        }
+
+        if(buttonName.equals("Resident"))
+        {
+            for(var toggle : this.tristateState.getToggles())
+            {
+                toggle.setSelected(false);
+                ((RadioButton) toggle).setDisable(disable);
+            }
+
+            this.isStudyAbroadCheckBox.setSelected(false);
+            this.isStudyAbroadCheckBox.setDisable(disable);
         }
     }
 
     @FXML
     void nonResidentSubMenu(ActionEvent event)
     {
-
-
         String buttonName = ((RadioButton) this.nonResidentOptions.getSelectedToggle()).getText();
 
-        System.out.println(buttonName);
-        if(buttonName.equals("Tristate"))
-        {
+        if(buttonName.equals("Tristate")) {
             for(var toggle : this.tristateState.getToggles())
             {
                 ((RadioButton) toggle).setDisable(false);
-
+                this.isStudyAbroadCheckBox.setSelected(false);
                 this.isStudyAbroadCheckBox.setDisable(true);
             }
         }
@@ -415,19 +389,97 @@ public class HelloController
         {
             for(var toggle : this.tristateState.getToggles())
             {
+                toggle.setSelected(false);
                 ((RadioButton) toggle).setDisable(true);
             }
-
             this.isStudyAbroadCheckBox.setDisable(false);
-            //
-            //disable tristate
-            //disable tristate staes
+        }
+    }
+
+    @FXML
+    void setFinancialAid(ActionEvent event)
+    {
+        String name = "";
+        Major addMajor;
+        double financialAidAmount = 0;
+        if(checkSetFinancialAid())
+        {
+            name = this.studentNamePaymentFinAid.getText();
+            addMajor = Major.valueOf(((RadioButton) this.majorPaymentTab.getSelectedToggle()).getText());
+            financialAidAmount = Double.parseDouble(this.financialAidAmount.getText());
+        }
+        else
+        {return;}
+
+        Student tempStudent = new Student(name,addMajor);
+        Student outputStudent = this.roster.getStudent(tempStudent);
+
+        if(outputStudent != null)
+        {
+
+            if(financialAidAmount < 0 || financialAidAmount > 10000)
+                textArea.appendText("Invalid amount.\n");
+            else {
+                if(outputStudent.getCreditHours() >= 12) {
+                    if(outputStudent instanceof Resident) {
+                        if(((Resident) outputStudent).setFinancialAid(financialAidAmount) == true)
+                            textArea.appendText("Tuition updated.\n");
+                        else
+                            textArea.appendText("Awarded once already.\n");
+                    }
+                    else {
+                        textArea.appendText("Not a resident student.\n");
+                    }
+                }
+                else {
+                    textArea.appendText("Parttime student doesn't qualify for the award.\n");
+                    return;
+                }
+            }
+        }
+        else {
+            textArea.appendText("Student not in the roster.\n");
         }
 
-        //disable = buttonName.equals("Tristate") ? true : false;
-        //toggleGroup = buttonName.equals("Tristate") ? this.tristateState : this
 
+    }
 
+    private boolean checkSetFinancialAid()
+    {
+        if(this.studentNamePaymentFinAid.getText().isEmpty())
+        {
+            textArea.appendText("Student name not entered.\n");
+            return false;
+        }
+
+        RadioButton majorButton = (RadioButton) this.majorPaymentTab.getSelectedToggle();
+        if(majorButton == null)
+        {
+            textArea.appendText("Major not selected.\n");
+            return false;
+        }
+
+        double payment = 0;
+
+        if(this.financialAidAmount.getText().equals(""))
+        {
+            textArea.appendText("Amount not entered.\n");
+            return false;
+        }
+
+        try {
+            payment = Double.parseDouble(this.financialAidAmount.getText());
+        }
+        catch (NumberFormatException ex) {
+            textArea.appendText("Invalid Amount.\n");
+            return false;
+        }
+
+        return true;
+    }
+
+    @FXML
+    void pay(ActionEvent event) {
 
     }
 

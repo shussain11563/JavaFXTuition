@@ -90,7 +90,7 @@
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
                                     <RadioButton disable="true" mnemonicParsing="false" onAction="#nonResidentSubMenu" text="International" toggleGroup="$nonResidentOptions" />
-                                    <CheckBox disable="true" mnemonicParsing="false" text="Study Abroad" />
+                                    <CheckBox fx:id="isStudyAbroadCheckBox" disable="true" mnemonicParsing="false" text="Study Abroad" />
                                  </children>
                               </HBox>
                               <Label text="Credit Hours" GridPane.rowIndex="5" />
