@@ -261,6 +261,7 @@ public class HelloController
         }
     }
 
+    //remove magic numberc
     private boolean checkMinMaxCredits(int intCredits) {
         if(intCredits < 0) {
             textArea.appendText("Credit hours cannot be negative.\n");
@@ -279,8 +280,63 @@ public class HelloController
 
 
     @FXML
-    void removeStudent(ActionEvent event) {
+    void removeStudent(ActionEvent event)
+    {
+        String name = "";
+        Major addMajor;
+        if(checkAddStudent())
+        {
+            name = this.studentName.getText();
+            addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
+        }
+        else
+        {
+            return;
+        }
 
+        Student tempStudent = new Student(name,addMajor);
+
+        if(this.roster.remove(tempStudent))
+            System.out.println("Student removed from the roster.");
+        else
+            System.out.println("Student is not in the roster.");
+
+    }
+
+    private boolean checkRemoveStudent()
+    {
+        if(studentName.getText().isEmpty())
+        {
+            textArea.appendText("Student name not entered.\n");
+            return false;
+        }
+
+        RadioButton majorButton = (RadioButton) major.getSelectedToggle();
+        if(majorButton == null)
+        {
+            textArea.appendText("Major not selected.\n");
+            return false;
+        }
+
+        return true;
+    }
+
+    public void runRemoveStudent(String rosterDetails, Roster rosterCollection) {
+
+        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
+        String name, major = "";
+
+        stringTokenizer.nextToken();
+        name = stringTokenizer.nextToken();
+        major = stringTokenizer.nextToken().toUpperCase();
+        Major addMajor = Major.valueOf(major);
+
+        Student tempStudent = new Student(name,addMajor);
+
+        if(rosterCollection.remove(tempStudent))
+            System.out.println("Student removed from the roster.");
+        else
+            System.out.println("Student is not in the roster.");
     }
 
 
