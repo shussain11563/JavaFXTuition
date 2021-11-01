@@ -12,7 +12,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 
 import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
 
 public class HelloController
 {
@@ -105,20 +104,8 @@ public class HelloController
         if(!checkMinMaxCredits(intCredits))
             return;
 
-
-
-        //addType Test
         runProcessAddStudent(this.roster, addType, name, addMajor, intCredits, additionalInfo);
     }
-
-
-
-
-
-
-
-
-
 
         //System.out.println(toogleGroupValue);
         //int intCredits = 0;
@@ -222,27 +209,15 @@ public class HelloController
                 textArea.appendText("No tristate area selected.\n");
                 return false;
             }
-            //if
         }
-        /*
-        else if(status.getText().equals("Non-Resident"))
-        {
-            //we
-
-        }*/
-        //else if nonresident and tristate selected but no state
-
 
         if(creditHours.getText().isEmpty())
         {
             textArea.appendText("Credit hours missing.\n");
             return false;
         }
-
-       //if()
         return true;
     }
-
 
     private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo)
     {
@@ -326,7 +301,6 @@ public class HelloController
         return true;
     }
 
-
     @FXML
     void removeStudent(ActionEvent event)
     {
@@ -369,21 +343,6 @@ public class HelloController
         return true;
     }
 
-    /*
-    //make this into one method
-    @FXML
-    void nonResidentMenu(ActionEvent event)
-    {
-
-        for(var toggle : nonResidentOptions.getToggles())
-        {
-            ((RadioButton) toggle).setDisable(false);
-        }
-
-    }
-    */
-
-
     @FXML
     void residentMenu(ActionEvent event)
     {
@@ -411,31 +370,19 @@ public class HelloController
             this.isStudyAbroadCheckBox.setSelected(false);
             this.isStudyAbroadCheckBox.setDisable(disable);
         }
-
-
-
-
     }
 
     @FXML
     void nonResidentSubMenu(ActionEvent event)
     {
-
         String buttonName = ((RadioButton) this.nonResidentOptions.getSelectedToggle()).getText();
 
-        if(buttonName.equals("Tristate"))
-        {
+        if(buttonName.equals("Tristate")) {
             for(var toggle : this.tristateState.getToggles())
             {
-
                 ((RadioButton) toggle).setDisable(false);
-                //System.out.println();
-
-
                 this.isStudyAbroadCheckBox.setSelected(false);
                 this.isStudyAbroadCheckBox.setDisable(true);
-
-
             }
         }
         else if(buttonName.equals("International"))
@@ -445,14 +392,8 @@ public class HelloController
                 toggle.setSelected(false);
                 ((RadioButton) toggle).setDisable(true);
             }
-
-
             this.isStudyAbroadCheckBox.setDisable(false);
-            //fix checkbox
         }
-
-
-
     }
 
     @FXML
@@ -536,9 +477,6 @@ public class HelloController
 
         return true;
     }
-
-    //delete
-
 
     @FXML
     void pay(ActionEvent event) {
