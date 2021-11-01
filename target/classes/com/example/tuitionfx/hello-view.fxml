@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -18,6 +19,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tuitionfx.HelloController">
    <top>
@@ -29,37 +31,97 @@
                      <children>
                         <GridPane layoutX="1.0" layoutY="3.0" prefHeight="172.0" prefWidth="581.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="3.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.99997965494794" minWidth="10.0" prefWidth="95.99998982747394" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="467.33335367838544" minWidth="8.333353678385436" prefWidth="416.00001017252606" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.99997965494794" minWidth="10.0" prefWidth="168.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="613.0" minWidth="8.333353678385436" prefWidth="613.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="49.0" minHeight="9.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="28.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="Name" />
-                              <Label text="Major" GridPane.rowIndex="1" />
-                              <Label text="Status" GridPane.rowIndex="2" />
-                              <TextField fx:id="studentName" prefHeight="31.0" prefWidth="451.0" GridPane.columnIndex="1" />
+                              <Label prefHeight="17.0" prefWidth="314.0" text="          Name:" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                              <Label prefHeight="27.0" prefWidth="312.0" text="          Major:" textAlignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                              <Label prefHeight="27.0" prefWidth="310.0" text="          Status:" textAlignment="CENTER" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                              <TextField fx:id="studentName" prefHeight="35.0" prefWidth="450.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding></TextField>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <RadioButton mnemonicParsing="false" text="CS">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="major" />
                                        </toggleGroup>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="EE" toggleGroup="$major" />
-                                    <RadioButton mnemonicParsing="false" text="ME" toggleGroup="$major" />
-                                    <RadioButton mnemonicParsing="false" text="IT" toggleGroup="$major" />
-                                    <RadioButton mnemonicParsing="false" text="BA" toggleGroup="$major" />
+                                    <RadioButton mnemonicParsing="false" text="EE" toggleGroup="$major">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="22.0" right="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="ME" toggleGroup="$major">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="IT" toggleGroup="$major">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="BA" toggleGroup="$major">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></RadioButton>
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -68,8 +130,23 @@
                                        <toggleGroup>
                                           <ToggleGroup fx:id="residentialStatus" />
                                        </toggleGroup>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" onAction="#residentMenu" text="Non-Resident" toggleGroup="$residentialStatus" />
+                                    <RadioButton mnemonicParsing="false" onAction="#residentMenu" text="Non-Resident" toggleGroup="$residentialStatus">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></RadioButton>
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -78,27 +155,90 @@
                                        <toggleGroup>
                                           <ToggleGroup fx:id="nonResidentOptions" />
                                        </toggleGroup>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </RadioButton>
                                     <RadioButton disable="true" mnemonicParsing="false" text="New York">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="tristateState" />
                                        </toggleGroup>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="14.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </RadioButton>
-                                    <RadioButton disable="true" mnemonicParsing="false" text="Connecticut" toggleGroup="$tristateState" />
+                                    <RadioButton disable="true" mnemonicParsing="false" text="Connecticut" toggleGroup="$tristateState">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></RadioButton>
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <RadioButton disable="true" mnemonicParsing="false" onAction="#nonResidentSubMenu" text="International" toggleGroup="$nonResidentOptions" />
-                                    <CheckBox fx:id="isStudyAbroadCheckBox" disable="true" mnemonicParsing="false" text="Study Abroad" />
+                                    <RadioButton disable="true" mnemonicParsing="false" onAction="#nonResidentSubMenu" text="International" toggleGroup="$nonResidentOptions">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></RadioButton>
+                                    <CheckBox fx:id="isStudyAbroadCheckBox" disable="true" mnemonicParsing="false" text="Study Abroad">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></CheckBox>
                                  </children>
                               </HBox>
-                              <Label text="Credit Hours" GridPane.rowIndex="5" />
-                              <TextField fx:id="creditHours" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="309.0" text="          Credit Hours:" textAlignment="CENTER" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                              <TextField fx:id="creditHours" prefHeight="35.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding></TextField>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#addStudent" prefHeight="25.0" prefWidth="231.0" text="Add Student" />
-                                    <Button mnemonicParsing="false" onAction="#removeStudent" prefHeight="25.0" prefWidth="162.0" text="Remove Student" />
+                                    <Button mnemonicParsing="false" onAction="#addStudent" prefHeight="35.0" prefWidth="340.0" text="Add Student">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding></Button>
+                                    <Button mnemonicParsing="false" onAction="#removeStudent" prefHeight="35.0" prefWidth="340.0" text="Remove Student">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding></Button>
                                  </children>
                               </HBox>
                            </children>
@@ -112,132 +252,171 @@
                      <children>
                         <FlowPane layoutX="7.0" layoutY="6.0" prefHeight="367.0" prefWidth="793.0">
                            <children>
-                              <Label prefHeight="22.0" prefWidth="369.0" text="Student Name" textAlignment="CENTER">
+                              <Label prefHeight="37.0" prefWidth="375.0" text="          Student Name:" textAlignment="CENTER">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
                               </Label>
-                              <TextField prefHeight="25.0" prefWidth="415.0">
+                              <TextField prefHeight="35.0" prefWidth="390.0">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </TextField>
-                              <Label prefHeight="22.0" prefWidth="371.0" text="Major">
+                              <Label prefHeight="37.0" prefWidth="376.0" text="          Major:">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
                               </Label>
                               <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="CS">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </RadioButton>
                               <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="EE">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </RadioButton>
                               <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="ME">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </RadioButton>
                               <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="IT">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </RadioButton>
                               <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="BA">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </RadioButton>
-                              <Label prefHeight="22.0" prefWidth="371.0" text="Payment Amount                                                                                $">
+                              <Label prefHeight="37.0" prefWidth="375.0" text="          Payment Amount:                              $">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
                               </Label>
-                              <TextField prefHeight="25.0" prefWidth="412.0" promptText=" 0.00">
+                              <TextField prefHeight="35.0" prefWidth="390.0" promptText=" 0.00">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </TextField>
-                              <Label prefHeight="17.0" prefWidth="370.0" text="Payment Date">
+                              <Label prefHeight="37.0" prefWidth="375.0" text="          Payment Date:">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
                               </Label>
-                              <DatePicker prefHeight="30.0" prefWidth="220.0">
+                              <DatePicker prefHeight="30.0" prefWidth="210.0">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                               </DatePicker>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="194.0" text="Pay">
+                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" text="Pay">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </Button>
-                              <Label prefHeight="17.0" prefWidth="370.0" text="Financial Aid Amount                                                                           $">
+                              <Label prefHeight="37.0" prefWidth="375.0" text="          Financial Aid Amount:                       $">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
                               </Label>
-                              <TextField prefHeight="25.0" prefWidth="220.0" promptText=" 0.00">
+                              <TextField prefHeight="35.0" prefWidth="210.0" promptText=" 0.00">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </TextField>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="194.0" text="Set">
+                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" text="Set">
                                  <FlowPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </Button>
                            </children>
@@ -247,7 +426,58 @@
           </Tab>
             <Tab text="Process Tuition">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <FlowPane prefHeight="370.0" prefWidth="800.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="245.0" text="Caculate Tuition">
+                                 <FlowPane.margin>
+                                    <Insets bottom="5.0" left="280.0" right="280.0" top="50.0" />
+                                 </FlowPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Separator prefHeight="75.0" prefWidth="802.0" />
+                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="245.0" text="Print Students">
+                                 <FlowPane.margin>
+                                    <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                                 </FlowPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="245.0" text="Print By Name">
+                                 <FlowPane.margin>
+                                    <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                                 </FlowPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="245.0" text="Print By Date">
+                                 <FlowPane.margin>
+                                    <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                                 </FlowPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>
