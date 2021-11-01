@@ -5,7 +5,6 @@ package com.example.tuitionfx;
  * @author Sharia Hussain, David Lam
  */
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
@@ -335,8 +334,6 @@ public class HelloController
     @FXML
     void residentMenu(ActionEvent event)
     {
-        //check null pointer
-        //change name
         boolean disable;
         String buttonName = ((RadioButton) residentialStatus.getSelectedToggle()).getText().trim();
         disable = buttonName.equals("Resident") ? true : false;
