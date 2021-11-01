@@ -17,8 +17,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 
-import java.time.LocalDate;
-import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 public class HelloController
@@ -566,8 +564,7 @@ public class HelloController
             name = this.studentNamePaymentFinAid.getText();
             addMajor = Major.valueOf(((RadioButton) this.majorPaymentTab.getSelectedToggle()).getText());
             paymentAmount = Double.parseDouble(this.paymentAmount.getText());
-            Date paymentDate = this.paymentDate.getValue().toString();
-
+            paymentDate = new Date(convertDateFormat(this.paymentDate.getValue().toString()));
         }
         else
         {return;}
@@ -644,34 +641,28 @@ public class HelloController
 
         String test;
         try{
-            test = this.paymentDate.getValue().toString();
+            test = convertDateFormat(this.paymentDate.getValue().toString());
         }
         catch (Exception e)
         {
             //use isValid
-            textArea.appendText("");
+            textArea.appendText("Invalid Payment Date");
+            return false;
         }
 
         return true;
     }
-    /**
+
+     /**
      * Method that converts a String date from "YYYY-MM-DD" to "MM-DD-YYYY
      * @param date string of the date to be converted
      */
-    private String convertDateFormat(String date) {
-        StringTokenizer stringTokenizer = new StringTokenizer(date, "-");
-        String year, month, day = "";
-
-        year = stringTokenizer.nextToken();
-        month = stringTokenizer.nextToken();
-        day = stringTokenizer.nextToken();
-
-
-        String output = month + "-" + day + "-" + year;
-        return output;
+    private String convertDateFormat(String oldDate)
+    {
+        String[] newDateArr = oldDate.split("-");
+        return String.format("%s/%s/%s", newDateArr[1], newDateArr[2], newDateArr[0]);
     }
-    
-    /*
+
     @FXML
     void runCalculateTuitionDue()
     {
@@ -679,11 +670,26 @@ public class HelloController
         textArea.appendText("Calculation completed.\n");
     }
 
+    @FXML
+    void printByPaymentHandler(ActionEvent event) {
+        textArea.appendText(this.roster.printByPaymentsMadeByPaymentDate());
+    }
+
+    @FXML
+    void printStudentNamesHandler(ActionEvent event) {
+        textArea.appendText(this.roster.printByNames());
+    }
+
+    @FXML
+    void printStudentsHandler(ActionEvent event) {
+        textArea.appendText(this.roster.print());
+    }
 
 
 
 
-     */
+
+
 
 
 

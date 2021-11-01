@@ -24,8 +24,6 @@ public class TuitionManager {
             rosterCollection.printByNames();
         else if(commandLineInput.equals("PT"))
             rosterCollection.printByPaymentsMadeByPaymentDate();
-        else if(commandLineInput.charAt(0) == 'C')
-            runCalculateTuitionDues(rosterCollection);
         else if(commandLineInput.charAt(0) == 'T')
             runPayTuition(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'S')
@@ -34,15 +32,6 @@ public class TuitionManager {
             System.out.println("Command '" + commandLineInput + "' not supported!");
     }
 
-    /**
-     * Method that runs the command in Roster Collection to calculate the tuition
-     * for all students in the roster.
-     * @param rosterCollection the roster collection that holds the list of students
-     */
-    public void runCalculateTuitionDues(Roster rosterCollection) {
-        rosterCollection.calculateTuition();
-        System.out.println("Calculation completed.");
-    }
 
     /**
      * Method that tokenizes the Roster Details string and checks for correct input.

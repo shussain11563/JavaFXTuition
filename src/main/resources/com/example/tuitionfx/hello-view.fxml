@@ -263,7 +263,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="35.0" prefWidth="390.0">
+                              <TextField fx:id="studentNamePaymentFinAid" prefHeight="35.0" prefWidth="390.0">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -292,8 +292,11 @@
                                  <font>
                                     <Font size="14.0" />
                                  </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="majorPaymentTab" />
+                                 </toggleGroup>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="EE">
+                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="EE" toggleGroup="$majorPaymentTab">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -304,7 +307,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="ME">
+                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="ME" toggleGroup="$majorPaymentTab">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -315,7 +318,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="IT">
+                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="IT" toggleGroup="$majorPaymentTab">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -326,7 +329,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="BA">
+                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="BA" toggleGroup="$majorPaymentTab">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -348,7 +351,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="35.0" prefWidth="390.0" promptText=" 0.00">
+                              <TextField fx:id="paymentAmount" prefHeight="35.0" prefWidth="390.0" promptText=" 0.00">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -370,7 +373,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <DatePicker prefHeight="30.0" prefWidth="210.0">
+                              <DatePicker fx:id="paymentDate" prefHeight="30.0" prefWidth="210.0">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -381,7 +384,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </DatePicker>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" text="Pay">
+                              <Button mnemonicParsing="false" onAction="#pay" prefHeight="35.0" prefWidth="175.0" text="Pay">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -400,7 +403,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="35.0" prefWidth="210.0" promptText=" 0.00">
+                              <TextField fx:id="financialAidAmount" prefHeight="35.0" prefWidth="210.0" promptText=" 0.00">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -411,7 +414,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" text="Set">
+                              <Button mnemonicParsing="false" onAction="#setFinancialAid" prefHeight="35.0" prefWidth="175.0" text="Set">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -430,7 +433,7 @@
                      <children>
                         <FlowPane prefHeight="370.0" prefWidth="800.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="245.0" text="Caculate Tuition">
+                              <Button mnemonicParsing="false" onAction="#runCalculateTuitionDue" prefHeight="30.0" prefWidth="245.0" text="Caculate Tuition">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="280.0" right="280.0" top="50.0" />
                                  </FlowPane.margin>
@@ -442,7 +445,7 @@
                                  </font>
                               </Button>
                               <Separator prefHeight="75.0" prefWidth="802.0" />
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="245.0" text="Print Students">
+                              <Button mnemonicParsing="false" onAction="#printStudentsHandler" prefHeight="30.0" prefWidth="245.0" text="Print Students">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -453,7 +456,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="245.0" text="Print By Name">
+                              <Button mnemonicParsing="false" onAction="#printStudentNamesHandler" prefHeight="30.0" prefWidth="245.0" text="Print By Name">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -464,7 +467,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="245.0" text="Print By Date">
+                              <Button mnemonicParsing="false" onAction="#printByPaymentHandler" prefHeight="30.0" prefWidth="245.0" text="Print By Date">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
