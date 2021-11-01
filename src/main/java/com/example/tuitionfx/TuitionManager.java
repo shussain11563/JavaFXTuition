@@ -53,10 +53,6 @@ public class TuitionManager {
             rosterCollection.printByNames();
         else if(commandLineInput.equals("PT"))
             rosterCollection.printByPaymentsMadeByPaymentDate();
-        else if(commandLineInput.charAt(0) == 'A')
-            runAddStudent(commandLineInput, rosterCollection);
-        else if(commandLineInput.charAt(0) == 'R')
-            runRemoveStudent(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'C')
             runCalculateTuitionDues(rosterCollection);
         else if(commandLineInput.charAt(0) == 'T')
@@ -69,45 +65,6 @@ public class TuitionManager {
             System.out.println("Command '" + commandLineInput + "' not supported!");
     }
 
-    /**
-     * Method that tokenizes the Roster Details string and runs a series of methods that checks the input.
-     * The method calls a method that processes the correct info that is to be added to the collection.
-     * @param rosterDetails the string that holds the Input from the command line
-     * @param rosterCollection the roster collection that holds the list of students
-     */
-    public void runAddStudent(String rosterDetails, Roster rosterCollection) {
-        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        int intCredits = 0;
-        String addType, name, major, credits, additionalInfo = "";
-
-        if(checkAddStudent(rosterDetails)) {
-            addType = stringTokenizer.nextToken();
-            name = stringTokenizer.nextToken();
-            major = stringTokenizer.nextToken().toUpperCase();
-            credits = stringTokenizer.nextToken();
-        }
-        else
-            return;
-
-        try {
-            intCredits = Integer.parseInt(credits);
-        }
-        catch (NumberFormatException ex) {
-            System.out.println("Invalid credit hours.");
-            return;
-        }
-        if(!checkMinMaxCredits(intCredits))
-            return;
-
-        try {
-            additionalInfo = stringTokenizer.nextToken();
-        }
-        catch (NoSuchElementException ex1) {
-        }
-
-        Major addMajor = Major.valueOf(major);
-        runProcessAddStudent(rosterCollection, addType, name, addMajor, intCredits, additionalInfo);
-    }
 
     /**
      * Method that instantiates a student based on the type of Student.
@@ -119,144 +76,15 @@ public class TuitionManager {
      * @param intCredits the number of credits the student is taking
      * @param additionalInfo additional info for international and tristate students
      */
-    private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo) {
-        if(addType.equals("AR")) {
-            Student newResidentStudent = new Resident(name, addMajor, intCredits);
-            finalizeAddStudent(rosterCollection, newResidentStudent);
-        }
-        else if(addType.equals("AN")) {
-            Student newNonResidentStudent =  new NonResident(name, addMajor, intCredits);
-            finalizeAddStudent(rosterCollection, newNonResidentStudent);
-        }
-        else if(addType.equals("AT")) {
-            additionalInfo = additionalInfo.toUpperCase();
-            if(additionalInfo.equals("NY") || additionalInfo.equals("CT")) {
-                State addState = State.valueOf(additionalInfo);
-                Student newTriStateStudent = new TriState(name, addMajor, intCredits, addState);
-                finalizeAddStudent(rosterCollection, newTriStateStudent);
-            }
-            else if(additionalInfo.equals(""))
-            {
-                System.out.println("Missing data in command line.");
-                return;
-            }
-            else
-            {
-                System.out.println("Not part of the tri-state area.");
-                return;
-            }
-        }
-        else if(addType.equals("AI")) {
-            if(intCredits < 12) {
-                System.out.println("International students must enroll at least 12 credits.");
-                return;
-            }
-            else {
-                boolean isInternational = Boolean.parseBoolean(additionalInfo.toLowerCase());
-                Student newInternationalStudent = new International(name, addMajor, intCredits, isInternational);
-                finalizeAddStudent(rosterCollection, newInternationalStudent);
-            }
-        }
-    }
-    /**
-     * Method that calls the add method in Roster Collection.
-     * Then, the method checks if the student has been added to the collection or not.
-     * @param rosterCollection the roster collection that holds the list of students
-     * @param student the type of student to be added to the roster
-     */
-    private void finalizeAddStudent(Roster rosterCollection, Student student) {
-        if(rosterCollection.add(student))
-            System.out.println("Student added.");
-        else {
-            System.out.println("Student is already in the roster.");
-        }
-    }
 
-    /**
-     * Method that checks for bad input within the Input for Add.
-     * @param rosterDetails the string that holds the Input from the command line
-     */
-    private boolean checkAddStudent(String rosterDetails) {
-        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        String addType, name, major, originalMajorParameter, credits = "";
 
-        addType = stringTokenizer.nextToken();
-
-        try {
-            name = stringTokenizer.nextToken();
-        }
-        catch (NoSuchElementException ex1) {
-            System.out.println("Missing data in command line.");
-            return false;
-        }
-
-        try {
-            major = stringTokenizer.nextToken();
-            originalMajorParameter = major;
-            major = major.toUpperCase();
-        }
-        catch (NoSuchElementException ex){
-            System.out.println("Missing data in command line.");
-            return false;
-        }
-
-        try {
-            credits = stringTokenizer.nextToken();
-        }
-        catch (NoSuchElementException ex1) {
-            System.out.println("Credit hours missing.");
-            return false;
-        }
-
-        if(!(major.equals("CS") || major.equals("IT") || major.equals("BA") || major.equals("EE") || major.equals("ME"))) {
-            System.out.println("'" + originalMajorParameter + "' is not a valid major.");
-            return false;
-        }
-        return true;
-    }
 
     /**
      * Method that checks the bounds for the Min/Max of the credit limits.
      * @param intCredits the number of credits the student is taking
      */
-    private boolean checkMinMaxCredits(int intCredits) {
-        if(intCredits < 0) {
-            System.out.println("Credit hours cannot be negative.");
-            return false;
-        }
-        else if(intCredits < 3) {
-            System.out.println("Minimum credit hours is 3.");
-            return false;
-        }
-        else if(intCredits > 24) {
-            System.out.println("Credit hours exceed the maximum 24.");
-            return false;
-        }
-        return true;
-    }
 
-    /**
-     * Method that tokenizes the Roster Details string and removes the student from the roster.
-     * The method also checks if the user is not in the roster before removing.
-     * @param rosterDetails the string that holds the Input from the command line
-     * @param rosterCollection the roster collection that holds the list of students
-     */
-    public void runRemoveStudent(String rosterDetails, Roster rosterCollection) {
-        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        String name, major = "";
 
-        stringTokenizer.nextToken();
-        name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken().toUpperCase();
-        Major addMajor = Major.valueOf(major);
-
-        Student tempStudent = new Student(name,addMajor);
-
-        if(rosterCollection.remove(tempStudent))
-            System.out.println("Student removed from the roster.");
-        else
-            System.out.println("Student is not in the roster.");
-    }
 
     /**
      * Method that runs the command in Roster Collection to calculate the tuition

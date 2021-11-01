@@ -46,9 +46,9 @@
                               <Label text="Major" GridPane.rowIndex="1" />
                               <Label text="Status" GridPane.rowIndex="2" />
                               <TextField fx:id="studentName" prefHeight="31.0" prefWidth="451.0" GridPane.columnIndex="1" />
-                              <HBox fx:id="majors" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <RadioButton fx:id="CS" mnemonicParsing="false" text="CS">
+                                    <RadioButton mnemonicParsing="false" text="CS">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="major" />
                                        </toggleGroup></RadioButton>
@@ -60,24 +60,30 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="Resident">
+                                    <RadioButton mnemonicParsing="false" onAction="#residentMenu" text="Resident">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="residentialStatus" />
                                        </toggleGroup></RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="Non-Resident" toggleGroup="$residentialStatus" />
+                                    <RadioButton mnemonicParsing="false" onAction="#residentMenu" text="Non-Resident" toggleGroup="$residentialStatus" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="Tristate" />
-                                    <RadioButton mnemonicParsing="false" text="New York" />
-                                    <RadioButton mnemonicParsing="false" text="Connecticut" />
+                                    <RadioButton disable="true" mnemonicParsing="false" onAction="#nonResidentSubMenu" text="Tristate">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="nonResidentOptions" />
+                                       </toggleGroup></RadioButton>
+                                    <RadioButton disable="true" mnemonicParsing="false" text="New York">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="tristateState" />
+                                       </toggleGroup></RadioButton>
+                                    <RadioButton disable="true" mnemonicParsing="false" text="Connecticut" toggleGroup="$tristateState" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="International" />
-                                    <CheckBox mnemonicParsing="false" text="Study Abroad" />
+                                    <RadioButton disable="true" mnemonicParsing="false" onAction="#nonResidentSubMenu" text="International" toggleGroup="$nonResidentOptions" />
+                                    <CheckBox fx:id="isStudyAbroadCheckBox" disable="true" mnemonicParsing="false" text="Study Abroad" />
                                  </children>
                               </HBox>
                               <Label text="Credit Hours" GridPane.rowIndex="5" />
