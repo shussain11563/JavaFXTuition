@@ -123,7 +123,8 @@ public class Roster {
     }
 
     /**
-     * Prints each Student's information in the roster collection.
+     * Returns each Student's information in the roster collection
+     * to be printed in the JavaFX TextArea.
      */
     public String print() {
         String resultant = "";
@@ -145,7 +146,8 @@ public class Roster {
     }
 
     /**
-     * Prints each Student's information in the roster collection by name.
+     * Returns each Student's information in the roster collection by name
+     * to be printed in the JavaFX TextArea.
      */
     public String printByNames()
     {
@@ -176,7 +178,8 @@ public class Roster {
     }
 
     /**
-     * Prints each Student's information in the roster collection by Payments made by their payment date.
+     * Returns each Student's information in the roster collection by Payments made by their payment date
+     * to be printed in the JavaFX TextArea.
      */
     public String printByPaymentsMadeByPaymentDate()
     {
