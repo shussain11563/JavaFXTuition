@@ -369,24 +369,6 @@ public class HelloController
         return true;
     }
 
-    public void runRemoveStudent(String rosterDetails, Roster rosterCollection) {
-
-        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        String name, major = "";
-
-        stringTokenizer.nextToken();
-        name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken().toUpperCase();
-        Major addMajor = Major.valueOf(major);
-
-        Student tempStudent = new Student(name,addMajor);
-
-        if(rosterCollection.remove(tempStudent))
-            textArea.appendText("Student removed from the roster.\n");
-        else
-            textArea.appendText("Student is not in the roster.\n");
-    }
-
     /*
     //make this into one method
     @FXML
@@ -470,6 +452,96 @@ public class HelloController
         }
 
 
+
+    }
+
+    @FXML
+    void setFinancialAid(ActionEvent event)
+    {
+        String name = "";
+        Major addMajor;
+        double financialAidAmount = 0;
+        if(checkSetFinancialAid())
+        {
+            name = this.studentNamePaymentFinAid.getText();
+            addMajor = Major.valueOf(((RadioButton) this.majorPaymentTab.getSelectedToggle()).getText());
+            financialAidAmount = Double.parseDouble(this.financialAidAmount.getText());
+        }
+        else
+        {return;}
+
+        Student tempStudent = new Student(name,addMajor);
+        Student outputStudent = this.roster.getStudent(tempStudent);
+
+        if(outputStudent != null)
+        {
+
+            if(financialAidAmount < 0 || financialAidAmount > 10000)
+                textArea.appendText("Invalid amount.\n");
+            else {
+                if(outputStudent.getCreditHours() >= 12) {
+                    if(outputStudent instanceof Resident) {
+                        if(((Resident) outputStudent).setFinancialAid(financialAidAmount) == true)
+                            textArea.appendText("Tuition updated.\n");
+                        else
+                            textArea.appendText("Awarded once already.\n");
+                    }
+                    else {
+                        textArea.appendText("Not a resident student.\n");
+                    }
+                }
+                else {
+                    textArea.appendText("Parttime student doesn't qualify for the award.\n");
+                    return;
+                }
+            }
+        }
+        else {
+            textArea.appendText("Student not in the roster.\n");
+        }
+
+
+    }
+
+    private boolean checkSetFinancialAid()
+    {
+        if(this.studentNamePaymentFinAid.getText().isEmpty())
+        {
+            textArea.appendText("Student name not entered.\n");
+            return false;
+        }
+
+        RadioButton majorButton = (RadioButton) this.majorPaymentTab.getSelectedToggle();
+        if(majorButton == null)
+        {
+            textArea.appendText("Major not selected.\n");
+            return false;
+        }
+
+        double payment = 0;
+
+        if(this.financialAidAmount.getText().equals(""))
+        {
+            textArea.appendText("Amount not entered.\n");
+            return false;
+        }
+
+        try {
+            payment = Double.parseDouble(this.financialAidAmount.getText());
+        }
+        catch (NumberFormatException ex) {
+            textArea.appendText("Invalid Amount.\n");
+            return false;
+        }
+
+        return true;
+    }
+
+    //delete
+
+
+    @FXML
+    void pay(ActionEvent event) {
 
     }
 
