@@ -574,13 +574,24 @@ public class HelloController
         catch (Exception e)
         {
             //use isValid
-            textArea.appendText("")
+            textArea.appendText("");
         }
 
         return true;
     }
 
+    private String convertDateFormat(String date) {
+        StringTokenizer stringTokenizer = new StringTokenizer(date, "-");
+        String year, month, day = "";
 
+        year = stringTokenizer.nextToken();
+        month = stringTokenizer.nextToken();
+        day = stringTokenizer.nextToken();
+
+
+        String output = month + "-" + day + "-" + year;
+        return output;
+    }
 
 
     /*
