@@ -169,8 +169,6 @@ public class HelloController
     private boolean checkAddStudent()
     {
 
-        //String addType, name, major, originalMajorParameter, credits = "";
-
         if(studentName.getText().isEmpty())
         {
             textArea.appendText("Student name not entered.\n");
@@ -192,7 +190,6 @@ public class HelloController
             return false;
         }
         //else if nonresident and tristate selected but no state
-
 
 
         if(creditHours.getText().isEmpty())
