@@ -6,6 +6,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -17,19 +18,19 @@ public class HelloController
     Roster roster = new Roster();
 
     @FXML
-    private RadioButton CS;
-
-    @FXML
     private BorderPane borderPane;
 
     @FXML
     private TextField creditHours;
 
     @FXML
+    private CheckBox isStudyAbroadCheckBox;
+
+    @FXML
     private ToggleGroup major;
 
     @FXML
-    private HBox majors;
+    private ToggleGroup nonResidentOptions;
 
     @FXML
     private ToggleGroup residentialStatus;
@@ -39,6 +40,9 @@ public class HelloController
 
     @FXML
     private TextArea textArea;
+
+    @FXML
+    private ToggleGroup tristateState;
 
     //-----ADD STUDENT
 
@@ -334,10 +338,70 @@ public class HelloController
         Student tempStudent = new Student(name,addMajor);
 
         if(rosterCollection.remove(tempStudent))
-            System.out.println("Student removed from the roster.");
+            textArea.appendText("Student removed from the roster.\n");
         else
-            System.out.println("Student is not in the roster.");
+            textArea.appendText("Student is not in the roster.\n");
     }
+
+    /*
+    //make this into one method
+    @FXML
+    void nonResidentMenu(ActionEvent event)
+    {
+
+        for(var toggle : nonResidentOptions.getToggles())
+        {
+            ((RadioButton) toggle).setDisable(false);
+        }
+
+    }
+    */
+
+
+    @FXML
+    void residentMenu(ActionEvent event)
+    {
+        //check null pointer
+        //change name
+        boolean disable;
+        String buttonName = ((RadioButton) residentialStatus.getSelectedToggle()).getText();
+        disable = buttonName.equals("Resident") ? true : false;
+
+        for(var toggle : nonResidentOptions.getToggles())
+        {
+            ((RadioButton) toggle).setDisable(disable);
+        }
+    }
+
+    @FXML
+    void nonResidentSubMenu(ActionEvent event)
+    {
+
+
+        String buttonName = ((RadioButton) residentialStatus.getSelectedToggle()).getText();
+
+        System.out.println(buttonName);
+        if(buttonName.equals("Tristate"))
+        {
+            for(var toggle : this.tristateState.getToggles())
+            {
+                ((RadioButton) toggle).setDisable(false);
+            }
+        }
+        else if(buttonName.equals("International"))
+        {
+            //disable tristate
+            //disable tristate staes
+        }
+
+        //disable = buttonName.equals("Tristate") ? true : false;
+        //toggleGroup = buttonName.equals("Tristate") ? this.tristateState : this
+
+
+
+    }
+
+
 
 
 
