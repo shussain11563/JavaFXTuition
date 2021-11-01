@@ -90,20 +90,20 @@ public class HelloController
         Major addMajor;
         if(checkAddStudent())
         {
-            name = this.studentName.getText();
+            name = this.studentName.getText().trim();
             //addType =
-            addType = ((RadioButton) this.residentialStatus.getSelectedToggle()).getText();
-            addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
-            credits = this.creditHours.getText();
+            addType = ((RadioButton) this.residentialStatus.getSelectedToggle()).getText().trim();
+            addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText().trim());
+            credits = this.creditHours.getText().trim();
 
             RadioButton nonResidentOptions = ((RadioButton) this.nonResidentOptions.getSelectedToggle());
             if(nonResidentOptions != null)
             {
 
-                addType = nonResidentOptions.getText();
+                addType = nonResidentOptions.getText().trim();
                 if(addType.equals("Tristate"))
                 {
-                    additionalInfo = ((RadioButton) this.tristateState.getSelectedToggle()).getText();
+                    additionalInfo = ((RadioButton) this.tristateState.getSelectedToggle()).getText().trim();
                 }
                 else if(addType.equals("International"))
                 {
@@ -139,7 +139,7 @@ public class HelloController
     private boolean checkAddStudent()
     {
 
-        if(studentName.getText().isEmpty())
+        if(studentName.getText().trim().isEmpty())
         {
             textArea.appendText("Student name not entered.\n");
             return false;
@@ -162,7 +162,7 @@ public class HelloController
         }
 
         RadioButton nonResidentOptionButton = (RadioButton) this.nonResidentOptions.getSelectedToggle();
-        if(nonResidentOptionButton != null && nonResidentOptionButton.getText().equals("Tristate"))
+        if(nonResidentOptionButton != null && nonResidentOptionButton.getText().trim().equals("Tristate"))
         {
             RadioButton states = (RadioButton) this.tristateState.getSelectedToggle();
             if (states == null)
@@ -172,7 +172,7 @@ public class HelloController
             }
         }
 
-        if(creditHours.getText().isEmpty())
+        if(creditHours.getText().trim().isEmpty())
         {
             textArea.appendText("Credit hours missing.\n");
             return false;
@@ -291,8 +291,8 @@ public class HelloController
         Major addMajor;
         if(checkRemoveStudent())
         {
-            name = this.studentName.getText();
-            addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText());
+            name = this.studentName.getText().trim();
+            addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText().trim());
         }
         else
         {
@@ -312,7 +312,7 @@ public class HelloController
      */
     private boolean checkRemoveStudent()
     {
-        if(studentName.getText().isEmpty())
+        if(studentName.getText().trim().isEmpty())
         {
             textArea.appendText("Student name not entered.\n");
             return false;
@@ -338,7 +338,7 @@ public class HelloController
         //check null pointer
         //change name
         boolean disable;
-        String buttonName = ((RadioButton) residentialStatus.getSelectedToggle()).getText();
+        String buttonName = ((RadioButton) residentialStatus.getSelectedToggle()).getText().trim();
         disable = buttonName.equals("Resident") ? true : false;
 
         for(var toggle : this.nonResidentOptions.getToggles())
@@ -368,7 +368,7 @@ public class HelloController
     @FXML
     void nonResidentSubMenu(ActionEvent event)
     {
-        String buttonName = ((RadioButton) this.nonResidentOptions.getSelectedToggle()).getText();
+        String buttonName = ((RadioButton) this.nonResidentOptions.getSelectedToggle()).getText().trim();
 
         if(buttonName.equals("Tristate")) {
             for(var toggle : this.tristateState.getToggles())
@@ -401,9 +401,9 @@ public class HelloController
         double financialAidAmount = 0;
         if(checkSetFinancialAid())
         {
-            name = this.studentNamePaymentFinAid.getText();
-            addMajor = Major.valueOf(((RadioButton) this.majorPaymentTab.getSelectedToggle()).getText());
-            financialAidAmount = Double.parseDouble(this.financialAidAmount.getText());
+            name = this.studentNamePaymentFinAid.getText().trim();
+            addMajor = Major.valueOf(((RadioButton) this.majorPaymentTab.getSelectedToggle()).getText().trim());
+            financialAidAmount = Double.parseDouble(this.financialAidAmount.getText().trim());
         }
         else
         {return;}
@@ -445,7 +445,7 @@ public class HelloController
      */
     private boolean checkSetFinancialAid()
     {
-        if(this.studentNamePaymentFinAid.getText().isEmpty())
+        if(this.studentNamePaymentFinAid.getText().trim().isEmpty())
         {
             textArea.appendText("Student name not entered.\n");
             return false;
@@ -460,14 +460,14 @@ public class HelloController
 
         double payment = 0;
 
-        if(this.financialAidAmount.getText().equals(""))
+        if(this.financialAidAmount.getText().trim().equals(""))
         {
             textArea.appendText("Amount not entered.\n");
             return false;
         }
 
         try {
-            payment = Double.parseDouble(this.financialAidAmount.getText());
+            payment = Double.parseDouble(this.financialAidAmount.getText().trim());
         }
         catch (NumberFormatException ex) {
             textArea.appendText("Invalid Amount.\n");
@@ -491,10 +491,10 @@ public class HelloController
 
         if(checkPayment())
         {
-            name = this.studentNamePaymentFinAid.getText();
-            addMajor = Major.valueOf(((RadioButton) this.majorPaymentTab.getSelectedToggle()).getText());
-            paymentAmount = Double.parseDouble(this.paymentAmount.getText());
-            paymentDate = new Date(convertDateFormat(this.paymentDate.getValue().toString()));
+            name = this.studentNamePaymentFinAid.getText().trim();
+            addMajor = Major.valueOf(((RadioButton) this.majorPaymentTab.getSelectedToggle()).getText().trim());
+            paymentAmount = Double.parseDouble(this.paymentAmount.getText().trim());
+            paymentDate = new Date(convertDateFormat(this.paymentDate.getValue().toString().trim()));
         }
         else
         {return;}
@@ -536,7 +536,7 @@ public class HelloController
     public boolean checkPayment()
     {
 
-        if(this.studentNamePaymentFinAid.getText().isEmpty())
+        if(this.studentNamePaymentFinAid.getText().trim().isEmpty())
         {
             textArea.appendText("Student name not entered.\n");
             return false;
@@ -551,14 +551,14 @@ public class HelloController
 
         double payment = 0;
 
-        if(this.paymentAmount.getText().equals(""))
+        if(this.paymentAmount.getText().trim().equals(""))
         {
             textArea.appendText("Payment amount missing.\n");
             return false;
         }
 
         try {
-            payment = Double.parseDouble(this.paymentAmount.getText());
+            payment = Double.parseDouble(this.paymentAmount.getText().trim());
         }
         catch (NumberFormatException ex) {
             textArea.appendText("Invalid Amount.\n");
@@ -581,7 +581,7 @@ public class HelloController
 
      /**
      * Method that converts a String date from "YYYY-MM-DD" to "MM-DD-YYYY
-     * @param date string of the date to be converted
+     * @param oldDate string of the date to be converted
      */
     private String convertDateFormat(String oldDate)
     {
