@@ -51,7 +51,8 @@
                                     <RadioButton mnemonicParsing="false" text="CS">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="major" />
-                                       </toggleGroup></RadioButton>
+                                       </toggleGroup>
+                                    </RadioButton>
                                     <RadioButton mnemonicParsing="false" text="EE" toggleGroup="$major" />
                                     <RadioButton mnemonicParsing="false" text="ME" toggleGroup="$major" />
                                     <RadioButton mnemonicParsing="false" text="IT" toggleGroup="$major" />
@@ -63,7 +64,8 @@
                                     <RadioButton mnemonicParsing="false" onAction="#residentMenu" text="Resident">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="residentialStatus" />
-                                       </toggleGroup></RadioButton>
+                                       </toggleGroup>
+                                    </RadioButton>
                                     <RadioButton mnemonicParsing="false" onAction="#residentMenu" text="Non-Resident" toggleGroup="$residentialStatus" />
                                  </children>
                               </HBox>
@@ -72,18 +74,20 @@
                                     <RadioButton disable="true" mnemonicParsing="false" onAction="#nonResidentSubMenu" text="Tristate">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="nonResidentOptions" />
-                                       </toggleGroup></RadioButton>
+                                       </toggleGroup>
+                                    </RadioButton>
                                     <RadioButton disable="true" mnemonicParsing="false" text="New York">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="tristateState" />
-                                       </toggleGroup></RadioButton>
+                                       </toggleGroup>
+                                    </RadioButton>
                                     <RadioButton disable="true" mnemonicParsing="false" text="Connecticut" toggleGroup="$tristateState" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
                                     <RadioButton disable="true" mnemonicParsing="false" onAction="#nonResidentSubMenu" text="International" toggleGroup="$nonResidentOptions" />
-                                    <CheckBox fx:id="isStudyAbroadCheckBox" disable="true" mnemonicParsing="false" text="Study Abroad" />
+                                    <CheckBox disable="true" mnemonicParsing="false" text="Study Abroad" />
                                  </children>
                               </HBox>
                               <Label text="Credit Hours" GridPane.rowIndex="5" />
