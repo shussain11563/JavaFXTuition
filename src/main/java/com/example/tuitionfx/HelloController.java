@@ -78,6 +78,9 @@ public class HelloController
     @FXML
     private ToggleGroup tristateState;
 
+    @FXML
+    private TextField getTuitionTextField;
+
     /**
      * Method that adds a student to the roster but also processes the
      * correct info that is to be added to the collection.
