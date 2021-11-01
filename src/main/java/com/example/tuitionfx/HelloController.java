@@ -487,8 +487,6 @@ public class HelloController
         double paymentAmount = 0;
         Date paymentDate;
 
-
-        //
         if(checkPayment())
         {
             name = this.studentNamePaymentFinAid.getText();
@@ -507,21 +505,21 @@ public class HelloController
         {
             if(outputStudent.getTuitionDue() < paymentAmount)
             {
-                System.out.println("Amount is greater than amount due.");
+                textArea.appendText("Amount is greater than amount due.\n");
                 return;
             }
             else if(paymentAmount <= 0) {
-                System.out.println("Invalid amount.");
+                textArea.appendText("Invalid amount.\n");
                 return;
             }
             else if(!paymentDate.isValid() ) {
-                System.out.println("Payment date invalid.");
+                textArea.appendText("Payment date invalid.\n");
                 return;
             }
             else
             {
                 outputStudent.payTuiton(paymentAmount, paymentDate);
-                System.out.println("Payment applied.");
+                textArea.appendText("Payment applied.");
             }
 
         }
