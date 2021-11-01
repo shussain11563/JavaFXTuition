@@ -125,32 +125,37 @@ public class Roster {
     /**
      * Prints each Student's information in the roster collection.
      */
-    public void print() {
+    public String print() {
+        String resultant = "";
         if (this.size == EMPTY) {
-            System.out.println("Student roster is empty!");
-            return;
+            resultant = "Student roster is empty!\n";
+            return resultant;
         }
 
-        System.out.println("* list of students in the roster **");
+        resultant += "* list of students in the roster **\n";
 
         for (int i = 0; i < this.size; i++) {
-            System.out.println(this.roster[i].toString());
+            resultant += resultant + this.roster[i].toString() + "\n";
         }
 
-        System.out.println("* end of roster **");
+        resultant += "* end of roster **\n";
+
+        return resultant;
 
     }
 
     /**
      * Prints each Student's information in the roster collection by name.
      */
-    public void printByNames() {
+    public String printByNames()
+    {
+        String resultant = "";
         if (this.size == EMPTY) {
-            System.out.println("Student roster is empty!");
-            return;
+            resultant = "Student roster is empty!\n";
+            return resultant;
         }
 
-        System.out.println("* list of students ordered by name **");
+        resultant += "* list of students ordered by name **\n";
 
         String[] names = new String[this.roster.length];
 
@@ -164,21 +169,24 @@ public class Roster {
         bubbleNullToEnd();
 
         for (int i = 0; i < this.size; i++) {
-            System.out.println(this.roster[i].toString());
+            resultant += resultant + this.roster[i].toString() + "\n";
         }
-        System.out.println("* end of roster **");
+        resultant += "* end of roster **\n";
+        return resultant;
     }
 
     /**
      * Prints each Student's information in the roster collection by Payments made by their payment date.
      */
-    public void printByPaymentsMadeByPaymentDate() {
+    public String printByPaymentsMadeByPaymentDate()
+    {
+        String resultant = "";
         if (this.size == EMPTY) {
-            System.out.println("Student roster is empty!");
-            return;
+            resultant = "Student roster is empty!\n";
+            return resultant;
         }
 
-        System.out.println("* list of students made payments ordered by payment date **");
+        resultant += "* list of students made payments ordered by payment date **\n";
 
         Date paymentMades[] = new Date[this.roster.length];
 
@@ -192,12 +200,13 @@ public class Roster {
 
         for (int i = 0; i < this.roster.length; i++) {
             if (paymentMades[i] != null) {
-                System.out.println(this.roster[i].toString());
+                resultant += resultant + this.roster[i].toString() +"\n";
             }
         }
 
         bubbleNullToEnd();
-        System.out.println("* end of roster **");
+        resultant += "* end of roster **\n";
+        return resultant;
     }
 
     /**
