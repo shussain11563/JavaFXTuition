@@ -676,6 +676,30 @@ public class HelloController
     @FXML
     void setStudyAbroad(ActionEvent event)
     {
+        String name = "";
+        Major addMajor;
+        if(getTuitionCheck())
+        {
+            name = this.studentName.getText().trim();
+            addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText().trim());
+        }
+        else
+        {
+            return;
+        }
+
+        Student tempStudent = new Student(name,addMajor);
+
+        Student outputStudent = this.roster.getStudent(tempStudent);
+        if(outputStudent != null && (outputStudent instanceof International) ) {
+            ((International) outputStudent).setIsStudyAbroad();
+            textArea.appendText("Tuition updated.\n");
+        }
+        else{
+            textArea.appendText("Couldn't find the international student.\n");
+        }
+
+
 
     }
 
