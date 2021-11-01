@@ -85,7 +85,7 @@ public class HelloController
                 else if(addType.equals("International"))
                 {
                     additionalInfo = isStudyAbroadCheckBox.isSelected() ? "true" : "false";
-                    System.out.println("Here on line 74");
+
                 }
             }
         }
@@ -107,72 +107,6 @@ public class HelloController
         runProcessAddStudent(this.roster, addType, name, addMajor, intCredits, additionalInfo);
     }
 
-        //System.out.println(toogleGroupValue);
-        //int intCredits = 0;
-        //String addType, name, major, credits, additionalInfo = "";
-
-        /*
-        if(checkAddStudent(this.roster))
-        {
-
-        }
-        */
-
-
-
-
-        //first we check if everything is valid
-
-        //valid name
-
-
-
-        //String studentName = this.studentName.getText();
-        //cint intCredits;
-        //if credit hours
-        //System.out.println(major.getSelectedToggle().isSelected());
-        /*
-        try
-        {
-            intCredits = Integer.parseInt(this.creditHours.getText());
-        }
-        catch (NumberFormatException ex)
-        {
-            textArea.appendText("Invalid credit hours.\n");
-            return;
-        }
-
-        //get selected RadioButton, needs error handling
-        Major addMajor = Major.valueOf(((RadioButton) major.getSelectedToggle()).getText());
-        //System.out.println(addMajor);
-
-
-        //runProcessAddStudent(this.roster, "TEST",studentName,intCredits,"TEST");
-        //fix this
-        //runProcessAddStudent(roster, "", studentName, addMajor, intCredits, "");
-
-
-
-
-        RadioButton selectedRadioButton = (RadioButton) major.getSelectedToggle();
-        //String toogleGroupValue = selectedRadioButton.getText();
-        //System.out.println(toogleGroupValue);
-
-
-        /*
-        for(var toggle : major.getToggles())
-        {
-            //((RadioButton) toggle).setD
-            System.out.println("-->" + ((RadioButton) toggle).getText());
-        }
-        */
-        //System.out.println(major.getSelectedToggle().isSelected());
-        //Major addMajor = Major.valueOf(major);
-
-        //test.add()
-
-        //
-    //}
 
     //maybe use try catch exceptions
     private boolean checkAddStudent()
