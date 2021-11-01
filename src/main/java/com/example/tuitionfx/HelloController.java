@@ -589,6 +589,9 @@ public class HelloController
         return String.format("%s/%s/%s", newDateArr[1], newDateArr[2], newDateArr[0]);
     }
 
+    /**
+     * Method that run the calculateTuition in Roster
+     */
     @FXML
     void runCalculateTuitionDue()
     {
@@ -596,16 +599,28 @@ public class HelloController
         textArea.appendText("Calculation completed.\n");
     }
 
+    /**
+     * Method that runs the printByPaymentsMadeByPaymentDate and displays in the textArea
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void printByPaymentHandler(ActionEvent event) {
         textArea.appendText(this.roster.printByPaymentsMadeByPaymentDate());
     }
 
+    /**
+     * Method that runs the printByNames and displays in the textArea
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void printStudentNamesHandler(ActionEvent event) {
         textArea.appendText(this.roster.printByNames());
     }
 
+    /**
+     * Method that runs the print and displays in the textArea
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void printStudentsHandler(ActionEvent event) {
         textArea.appendText(this.roster.print());
