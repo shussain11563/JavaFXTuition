@@ -7,38 +7,9 @@ package com.example.tuitionfx;
  */
 
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class TuitionManager {
-    /**
-     * Method that is called by the RunProject2 driver and starts the Tuition Collection Manager.
-     * Initializes Roster Collection object and takes input from console to perform actions.
-     */
-    public void run() {
-        Scanner scanner = new Scanner(System.in);
-        Boolean runProject = false;
-        Roster rosterCollection = new Roster();
-
-        while(scanner.hasNextLine()) {
-            if(runProject == false) {
-                System.out.println("Tuition Manager starts running.");
-                runProject = true;
-            }
-
-            String commandLineInput = scanner.nextLine();
-            commandLineInput = commandLineInput.trim();
-
-            if(commandLineInput.equals(""))
-                continue;
-            else if(commandLineInput.equals("Q")) {
-                System.out.println("Tuition Manager terminated.");
-                break;
-            }
-            else
-                runTuitionCommands(commandLineInput, rosterCollection);
-        }
-    }
 
     /**
      * Helper method that runs the Tuition commands and checks the commandLineInput
@@ -59,32 +30,9 @@ public class TuitionManager {
             runPayTuition(commandLineInput, rosterCollection);
         else if(commandLineInput.charAt(0) == 'S')
             runSetStudyAbroadStatus(commandLineInput, rosterCollection);
-        else if(commandLineInput.charAt(0) == 'F')
-            runSetFinancialAidAmount(commandLineInput, rosterCollection);
         else
             System.out.println("Command '" + commandLineInput + "' not supported!");
     }
-
-
-    /**
-     * Method that instantiates a student based on the type of Student.
-     * Then, the method finalizes the new object by calling a new method to add to Roster.
-     * @param rosterCollection the roster collection that holds the list of students
-     * @param addType the type of student to be added to the roster
-     * @param name the name of the student
-     * @param addMajor the major of the student
-     * @param intCredits the number of credits the student is taking
-     * @param additionalInfo additional info for international and tristate students
-     */
-
-
-
-    /**
-     * Method that checks the bounds for the Min/Max of the credit limits.
-     * @param intCredits the number of credits the student is taking
-     */
-
-
 
     /**
      * Method that runs the command in Roster Collection to calculate the tuition
@@ -153,13 +101,7 @@ public class TuitionManager {
         }
     }
 
-    /**
-     * Method that tokenizes the Roster Details string and checks for correct input.
-     * Then the method calls the setIsStudyAbroad to set an International Student
-     * to study abroad.
-     * @param rosterDetails the string that holds the Input from the command line
-     * @param rosterCollection the roster collection that holds the list of students
-     */
+
     public void runSetStudyAbroadStatus(String rosterDetails, Roster rosterCollection) {
         StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
         String name, major = "";
@@ -181,59 +123,4 @@ public class TuitionManager {
         }
     }
 
-    /**
-     * Method that tokenizes the Roster Details string and checks for correct input.
-     * Then the method calls the setFinancialAid to set the amount of Financial Aid given to a resident student.
-     * @param rosterDetails the string that holds the Input from the command line
-     * @param rosterCollection the roster collection that holds the list of students
-     */
-    public void runSetFinancialAidAmount(String rosterDetails, Roster rosterCollection) {
-        StringTokenizer stringTokenizer = new StringTokenizer(rosterDetails, ",");
-        String name, major, amount = "";
-        double financialAidAmount = 0;
-
-        stringTokenizer.nextToken();
-        name = stringTokenizer.nextToken();
-        major = stringTokenizer.nextToken().toUpperCase();
-        Major addMajor = Major.valueOf(major);
-
-        try {
-            amount = stringTokenizer.nextToken();
-        }
-        catch (NoSuchElementException ex1) {
-            System.out.println("Missing the amount.");
-            return;
-        }
-        Student tempStudent = new Student(name,addMajor);
-        Student outputStudent = rosterCollection.getStudent(tempStudent);
-
-
-        if(outputStudent != null) {
-            financialAidAmount = Double.parseDouble(amount);
-
-
-            if(financialAidAmount < 0 || financialAidAmount > 10000)
-                System.out.println("Invalid amount.");
-            else {
-                if(outputStudent.getCreditHours() >= 12) {
-                    if(outputStudent instanceof Resident) {
-                        if(((Resident) outputStudent).setFinancialAid(financialAidAmount) == true)
-                            System.out.println("Tuition updated.");
-                        else
-                            System.out.println("Awarded once already.");
-                    }
-                    else {
-                        System.out.println("Not a resident student.");
-                    }
-                }
-                else {
-                    System.out.println("Parttime student doesn't qualify for the award.");
-                    return;
-                }
-            }
-        }
-        else {
-            System.out.println("Student not in the roster.");
-        }
-    }
 }
