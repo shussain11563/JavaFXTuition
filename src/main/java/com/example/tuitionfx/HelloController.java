@@ -15,9 +15,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.DatePicker;
-import javafx.scene.layout.HBox;
-
-import java.util.StringTokenizer;
 
 public class HelloController
 {
@@ -195,7 +192,6 @@ public class HelloController
      */
     private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo)
     {
-        System.out.println(addType);
         if(addType.equals("Resident")) {
             Student newResidentStudent = new Resident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newResidentStudent);
@@ -532,10 +528,6 @@ public class HelloController
         {
             textArea.appendText("Student not in the roster.\n");
         }
-
-
-
-
     }
 
     /**
@@ -618,15 +610,5 @@ public class HelloController
     void printStudentsHandler(ActionEvent event) {
         textArea.appendText(this.roster.print());
     }
-
-
-
-
-
-
-
-
-
-
 
 }
