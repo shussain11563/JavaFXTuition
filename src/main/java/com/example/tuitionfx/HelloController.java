@@ -11,7 +11,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 
 public class HelloController
 {
@@ -441,7 +443,6 @@ public class HelloController
             textArea.appendText("Student not in the roster.\n");
         }
 
-
     }
 
     private boolean checkSetFinancialAid()
@@ -479,9 +480,122 @@ public class HelloController
     }
 
     @FXML
-    void pay(ActionEvent event) {
+    void pay(ActionEvent event)
+    {
+        String name = "";
+        Major addMajor;
+        double paymentAmount = 0;
+        Date paymentDate;
+
+
+        //
+        if(checkPayment())
+        {
+            name = this.studentNamePaymentFinAid.getText();
+            addMajor = Major.valueOf(((RadioButton) this.majorPaymentTab.getSelectedToggle()).getText());
+            paymentAmount = Double.parseDouble(this.paymentAmount.getText());
+            Date paymentDate = this.paymentDate.getValue().toString();
+
+        }
+        else
+        {return;}
+
+        Student tempStudent = new Student(name,addMajor);
+        Student outputStudent = this.roster.getStudent(tempStudent);
+
+        if(outputStudent != null)
+        {
+            if(outputStudent.getTuitionDue() < paymentAmount)
+            {
+                System.out.println("Amount is greater than amount due.");
+                return;
+            }
+            else if(paymentAmount <= 0) {
+                System.out.println("Invalid amount.");
+                return;
+            }
+            else if(!paymentDate.isValid() ) {
+                System.out.println("Payment date invalid.");
+                return;
+            }
+            else
+            {
+                outputStudent.payTuiton(paymentAmount, paymentDate);
+                System.out.println("Payment applied.");
+            }
+
+        }
+        else
+        {
+            textArea.appendText("Student not in the roster.\n");
+        }
+
+
+
 
     }
+
+    public boolean checkPayment()
+    {
+
+        if(this.studentNamePaymentFinAid.getText().isEmpty())
+        {
+            textArea.appendText("Student name not entered.\n");
+            return false;
+        }
+
+        RadioButton majorButton = (RadioButton) this.majorPaymentTab.getSelectedToggle();
+        if(majorButton == null)
+        {
+            textArea.appendText("Major not selected.\n");
+            return false;
+        }
+
+        double payment = 0;
+
+        if(this.paymentAmount.getText().equals(""))
+        {
+            textArea.appendText("Payment amount missing.\n");
+            return false;
+        }
+
+        try {
+            payment = Double.parseDouble(this.paymentAmount.getText());
+        }
+        catch (NumberFormatException ex) {
+            textArea.appendText("Invalid Amount.\n");
+            return false;
+        }
+
+        String test;
+        try{
+            test = this.paymentDate.getValue().toString();
+        }
+        catch (Exception e)
+        {
+            //use isValid
+            textArea.appendText("")
+        }
+
+        return true;
+    }
+
+
+
+
+    /*
+    @FXML
+    void runCalculateTuitionDue()
+    {
+        this.roster.calculateTuition();
+        textArea.appendText("Calculation completed.\n");
+    }
+
+
+
+
+
+     */
 
 
 
