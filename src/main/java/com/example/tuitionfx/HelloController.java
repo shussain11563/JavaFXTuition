@@ -15,6 +15,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.DatePicker;
 
+import java.text.DecimalFormat;
+
 public class HelloController
 {
     /** Roster object that will contain all details when the application is running*/
@@ -622,5 +624,62 @@ public class HelloController
     void printStudentsHandler(ActionEvent event) {
         textArea.appendText(this.roster.print());
     }
+
+    private boolean getTuitionCheck()
+    {
+        if(studentName.getText().trim().isEmpty())
+        {
+            textArea.appendText("Student name not entered.\n");
+            return false;
+        }
+
+        RadioButton majorButton = (RadioButton) major.getSelectedToggle();
+        if(majorButton == null)
+        {
+            textArea.appendText("Major not selected.\n");
+            return false;
+        }
+
+        return true;
+    }
+
+    @FXML
+    void getTutionDue(ActionEvent event)
+    {
+        String name = "";
+        Major addMajor;
+        if(getTuitionCheck())
+        {
+            name = this.studentName.getText().trim();
+            addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText().trim());
+        }
+        else
+        {
+            return;
+        }
+
+        Student tempStudent = new Student(name,addMajor);
+
+        if(this.roster.getStudent(tempStudent)!=null)
+        {
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            //getTuitionTextField.setText(df.format(tempStudent.getTuitionDue());
+
+        }
+        else
+        {
+            textArea.appendText("Student is not in the roster.\n");
+        }
+
+    }
+
+    @FXML
+    void setStudyAbroad(ActionEvent event)
+    {
+
+    }
+
+
+
 
 }
