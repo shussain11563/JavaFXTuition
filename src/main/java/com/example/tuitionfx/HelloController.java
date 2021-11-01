@@ -1,5 +1,11 @@
 package com.example.tuitionfx;
 
+/**
+ * HelloController is a class that handles all the events driven by the I/O in the application.
+ * @author Sharia Hussain, David Lam
+ */
+
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
@@ -17,50 +23,70 @@ import java.util.StringTokenizer;
 
 public class HelloController
 {
+    /** Roster object that will contain all details when the application is running*/
     Roster roster = new Roster();
 
+    /** BorderPane Object used for manipulation/receiving within the JavaFX UI */
     @FXML
     private BorderPane borderPane;
 
+    /** TextField Object used for manipulation/receiving of creditHours data within the JavaFX UI */
     @FXML
     private TextField creditHours;
 
+    /** TextField Object used for manipulation/receiving of financialAidAmount data within the JavaFX UI */
     @FXML
     private TextField financialAidAmount;
 
+    /** CheckBox Object used for manipulation/receiving of isStudyAbroadCheckBox data within the JavaFX UI */
     @FXML
     private CheckBox isStudyAbroadCheckBox;
 
+    /** ToggleGroup Object used for manipulation/receiving of major data within the JavaFX UI */
     @FXML
     private ToggleGroup major;
 
+    /** ToggleGroup Object used for manipulation/receiving of majorPaymentTab data within the JavaFX UI */
     @FXML
     private ToggleGroup majorPaymentTab;
 
+    /** ToggleGroup Object used for manipulation/receiving of nonResidentOptions data within the JavaFX UI */
     @FXML
     private ToggleGroup nonResidentOptions;
 
+    /** TextField Object used for manipulation/receiving of paymentAmount data within the JavaFX UI */
     @FXML
     private TextField paymentAmount;
 
+    /** DatePicker Object used for manipulation/receiving of paymentDate data within the JavaFX UI */
     @FXML
     private DatePicker paymentDate;
 
+    /** ToggleGroup Object used for manipulation/receiving of residentialStatus data within the JavaFX UI */
     @FXML
     private ToggleGroup residentialStatus;
 
+    /** TextField Object used for manipulation/receiving of studentName data within the JavaFX UI */
     @FXML
     private TextField studentName;
 
+    /** TextField Object used for manipulation/receiving of studentNamePaymentFinAid data within the JavaFX UI */
     @FXML
     private TextField studentNamePaymentFinAid;
 
+    /** textArea Object used for manipulation/receiving of textArea data within the JavaFX UI */
     @FXML
     private TextArea textArea;
 
+    /** ToggleGroup Object used for manipulation/receiving of tristateState data within the JavaFX UI */
     @FXML
     private ToggleGroup tristateState;
 
+    /**
+     * Method that adds a student to the roster but also processes the
+     * correct info that is to be added to the collection.
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void addStudent(ActionEvent event)
     {
@@ -177,6 +203,10 @@ public class HelloController
     //}
 
     //maybe use try catch exceptions
+
+    /**
+     * Method that checks for bad input within the Input for Add.
+     */
     private boolean checkAddStudent()
     {
 
@@ -221,6 +251,16 @@ public class HelloController
         return true;
     }
 
+    /**
+     * Method that instantiates a student based on the type of Student.
+     * Then, the method finalizes the new object by calling a new method to add to Roster.
+     * @param rosterCollection the roster collection that holds the list of students
+     * @param addType the type of student to be added to the roster
+     * @param name the name of the student
+     * @param addMajor the major of the student
+     * @param intCredits the number of credits the student is taking
+     * @param additionalInfo additional info for international and tristate students
+     */
     private void runProcessAddStudent(Roster rosterCollection, String addType, String name, Major addMajor, int intCredits, String additionalInfo)
     {
         System.out.println(addType);
@@ -277,6 +317,12 @@ public class HelloController
         }
     }
 
+    /**
+     * Method that calls the add method in Roster Collection.
+     * Then, the method checks if the student has been added to the collection or not.
+     * @param rosterCollection the roster collection that holds the list of students
+     * @param student the type of student to be added to the roster
+     */
     private void finalizeAddStudent(Roster rosterCollection, Student student)
     {
         if(rosterCollection.add(student))
@@ -286,6 +332,10 @@ public class HelloController
         }
     }
 
+    /**
+     * Method that checks the bounds for the Min/Max of the credit limits.
+     * @param intCredits the number of credits the student is taking
+     */
     //remove magic numberc
     private boolean checkMinMaxCredits(int intCredits) {
         if(intCredits < 0) {
@@ -302,7 +352,10 @@ public class HelloController
         }
         return true;
     }
-
+    /**
+     * Method that removes a student from the roster.
+     * The method also checks if the user is not in the roster before removing.
+     */
     @FXML
     void removeStudent(ActionEvent event)
     {
@@ -326,7 +379,9 @@ public class HelloController
             textArea.appendText("Student is not in the roster.\n");
 
     }
-
+    /**
+     * Method that checks the if there is an input for student to be removed.
+     */
     private boolean checkRemoveStudent()
     {
         if(studentName.getText().isEmpty())
@@ -345,6 +400,10 @@ public class HelloController
         return true;
     }
 
+    /**
+     * Method that toggles radioButtons based on if resident or not.
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void residentMenu(ActionEvent event)
     {
@@ -374,6 +433,10 @@ public class HelloController
         }
     }
 
+    /**
+     * Method that toggles checkBoxes based on if nonResident or not.
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void nonResidentSubMenu(ActionEvent event)
     {
@@ -398,6 +461,10 @@ public class HelloController
         }
     }
 
+    /**
+     * Method that toggles financialAid after checking for valid inputs.
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void setFinancialAid(ActionEvent event)
     {
@@ -445,6 +512,9 @@ public class HelloController
 
     }
 
+    /**
+     * Method that checks the if there is correct inputs for financialAid.
+     */
     private boolean checkSetFinancialAid()
     {
         if(this.studentNamePaymentFinAid.getText().isEmpty())
@@ -479,6 +549,10 @@ public class HelloController
         return true;
     }
 
+    /**
+     * Method that pays the tuition for a student but checks if all the input is given.
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void pay(ActionEvent event)
     {
@@ -533,6 +607,9 @@ public class HelloController
 
     }
 
+    /**
+     * Method that checks the if there is correct inputs for student payment.
+     */
     public boolean checkPayment()
     {
 
@@ -577,7 +654,10 @@ public class HelloController
 
         return true;
     }
-
+    /**
+     * Method that converts a String date from "YYYY-MM-DD" to "MM-DD-YYYY
+     * @param date string of the date to be converted
+     */
     private String convertDateFormat(String date) {
         StringTokenizer stringTokenizer = new StringTokenizer(date, "-");
         String year, month, day = "";
@@ -590,8 +670,7 @@ public class HelloController
         String output = month + "-" + day + "-" + year;
         return output;
     }
-
-
+    
     /*
     @FXML
     void runCalculateTuitionDue()
