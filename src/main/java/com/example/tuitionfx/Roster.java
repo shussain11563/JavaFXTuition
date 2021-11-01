@@ -174,7 +174,6 @@ public class Roster {
             resultant += this.roster[i].toString() + "\n";
         }
         resultant += "* end of roster **\n";
-        System.out.println(resultant);
         return resultant;
     }
 
