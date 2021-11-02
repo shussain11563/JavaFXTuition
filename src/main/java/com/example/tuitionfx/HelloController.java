@@ -494,6 +494,8 @@ public class HelloController
         else
         {return;}
 
+
+
         Student tempStudent = new Student(name,addMajor);
         Student outputStudent = this.roster.getStudent(tempStudent);
 
@@ -508,7 +510,8 @@ public class HelloController
                 textArea.appendText("Invalid amount.\n");
                 return;
             }
-            else if(!paymentDate.isValid() ) {
+            else if(!paymentDate.isValid())
+            {
                 textArea.appendText("Payment date invalid.\n");
                 return;
             }
