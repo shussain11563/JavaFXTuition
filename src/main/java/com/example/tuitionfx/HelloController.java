@@ -108,6 +108,7 @@ public class HelloController
                 if(addType.equals("Tristate"))
                 {
                     additionalInfo = ((RadioButton) this.tristateState.getSelectedToggle()).getText().trim();
+                    additionalInfo = additionalInfo.equals("New York")  ? "NY" : "CT";
                 }
                 else if(addType.equals("International"))
                 {
@@ -171,7 +172,7 @@ public class HelloController
             RadioButton states = (RadioButton) this.tristateState.getSelectedToggle();
             if (states == null)
             {
-                textArea.appendText("No tristate area selected.\n");
+                textArea.appendText("No tri-state area selected.\n");
                 return false;
             }
         }
@@ -200,35 +201,28 @@ public class HelloController
             Student newResidentStudent = new Resident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newResidentStudent);
         }
-        //change addtype
         else if(addType.equals("Non-Resident")) {
             Student newNonResidentStudent = new NonResident(name, addMajor, intCredits);
             finalizeAddStudent(rosterCollection, newNonResidentStudent);
         }
-        //change addtype
         else if(addType.equals("Tristate")) {
             additionalInfo = additionalInfo.toUpperCase();
-            //change addtype
             if(additionalInfo.equals("NY") || additionalInfo.equals("CT")) {
                 State addState = State.valueOf(additionalInfo);
                 Student newTriStateStudent = new TriState(name, addMajor, intCredits, addState);
                 finalizeAddStudent(rosterCollection, newTriStateStudent);
             }
-            //change addtype
             else if(additionalInfo.equals(""))
             {
-                //CHANGE THIS
-                textArea.appendText("No Tristate Area selected.\n");
+                textArea.appendText("No tri-state area selected.\n");
                 return;
             }
             else
             {
-                //CHANGE THIS
                 textArea.appendText("Not part of the tri-state area.\n");
                 return;
             }
         }
-        //change addtype
         else if(addType.equals("International"))
         {
             if(intCredits < 12)
@@ -662,11 +656,13 @@ public class HelloController
         }
 
         Student tempStudent = new Student(name,addMajor);
+        Student outputStudent = this.roster.getStudent(tempStudent);
 
-        if(this.roster.getStudent(tempStudent)!=null)
+        if(outputStudent != null)
         {
             DecimalFormat df = new DecimalFormat("#,##0.00");
-            //getTuitionTextField.setText(df.format(tempStudent.getTuitionDue());
+            getTuitionTextField.setText(df.format(outputStudent.getTuitionDue()));
+            getTuitionTextField.setEditable(false);
 
         }
         else

@@ -246,7 +246,7 @@
                                        </font></Button>
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="285.0" text="Set Study Abroad" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <Button mnemonicParsing="false" onAction="#setStudyAbroad" prefHeight="35.0" prefWidth="285.0" text="Set Study Abroad" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
@@ -265,7 +265,7 @@
                               <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                  <children>
                                     <Label prefHeight="40.0" prefWidth="0.0" text="\$" />
-                                    <TextField prefHeight="25.0" prefWidth="283.0" promptText="0.00">
+                                    <TextField fx:id="getTuitionTextField" prefHeight="25.0" prefWidth="283.0" promptText="0.00">
                                        <FlowPane.margin>
                                           <Insets right="10.0" />
                                        </FlowPane.margin>
@@ -273,7 +273,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </TextField>
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="286.0" text="Tuition Due">
+                                    <Button mnemonicParsing="false" onAction="#getTutionDue" prefHeight="27.0" prefWidth="286.0" text="Tuition Due">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
