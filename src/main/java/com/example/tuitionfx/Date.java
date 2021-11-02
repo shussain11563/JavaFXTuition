@@ -65,10 +65,7 @@ public class Date implements Comparable<Date>
             return false;
         }
         else if(this.month >= MONTH_MIN && this.month <= MONTH_MAX) {
-            if(this.month % 2 == 1) {
-                return (this.day >= DAY_MIN && this.day <= DAY_MAX_THIRTHY_ONE);
-            }
-            else if(this.month % 2 == 0 && this.month == 2) {
+            if(this.month % 2 == 0 && this.month == 2) {
                 if(this.year % QUADRENNIAL == 0) {
                     if(this.year % CENTENNIAL == 0) {
                         if(this.year % QUATERCENTENNIAL == 0) {
@@ -86,13 +83,17 @@ public class Date implements Comparable<Date>
                     return (this.day >= DAY_MIN && this.day <= DAY_MAX_NOT_LEAPYEAR);
                 }
             }
+            else if(this.month % 2 == 0 && this.month > 7) {
+                return (this.day >= DAY_MIN && this.day <= DAY_MAX_THIRTHY_ONE);
+            }
+            else if(this.month % 2 == 1 && this.month > 7) {
+                return (this.day >= DAY_MIN && this.day <= DAY_MAX_THIRTHY);
+            }
             else {
                 return (this.day >= DAY_MIN && this.day <= DAY_MAX_THIRTHY);
             }
         }
         else {
-
-
             return false;
         }
     }
