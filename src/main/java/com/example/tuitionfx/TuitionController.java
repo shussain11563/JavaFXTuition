@@ -17,7 +17,7 @@ import javafx.scene.control.DatePicker;
 
 import java.text.DecimalFormat;
 
-public class HelloController
+public class TuitionController
 {
     /** Roster object that will contain all details when the application is running*/
     Roster roster = new Roster();
