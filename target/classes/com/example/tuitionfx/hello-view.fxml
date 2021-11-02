@@ -540,6 +540,6 @@
       </TabPane>
    </top>
    <bottom>
-      <TextArea fx:id="textArea" editable="false" prefHeight="223.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textArea" editable="false" minHeight="230.0" minWidth="800.0" prefHeight="230.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
