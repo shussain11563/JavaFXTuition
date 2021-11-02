@@ -487,6 +487,8 @@ public class HelloController
         else
         {return;}
 
+
+
         Student tempStudent = new Student(name,addMajor);
         Student outputStudent = this.roster.getStudent(tempStudent);
 
@@ -501,14 +503,15 @@ public class HelloController
                 textArea.appendText("Invalid amount.\n");
                 return;
             }
-            else if(!paymentDate.isValid() ) {
+            else if(!paymentDate.isValid())
+            {
                 textArea.appendText("Payment date invalid.\n");
                 return;
             }
             else
             {
                 outputStudent.payTuiton(paymentAmount, paymentDate);
-                textArea.appendText("Payment applied.");
+                textArea.appendText("Payment applied.\n");
             }
 
         }
@@ -545,10 +548,17 @@ public class HelloController
             return false;
         }
 
+
         try {
             payment = Double.parseDouble(this.paymentAmount.getText().trim());
         }
         catch (NumberFormatException ex) {
+            textArea.appendText("Invalid Amount.\n");
+            return false;
+        }
+
+        if(payment == 0)
+        {
             textArea.appendText("Invalid Amount.\n");
             return false;
         }
@@ -559,7 +569,8 @@ public class HelloController
         }
         catch (Exception e)
         {
-            textArea.appendText("Invalid Payment Date");
+
+            textArea.appendText("Invalid Payment Date\n");
             return false;
         }
 
