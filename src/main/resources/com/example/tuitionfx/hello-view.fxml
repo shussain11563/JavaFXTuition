@@ -420,7 +420,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="paymentDate" prefHeight="30.0" prefWidth="210.0">
+                              <DatePicker fx:id="paymentDate" prefHeight="36.0" prefWidth="165.0">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -431,7 +431,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </DatePicker>
-                              <Button mnemonicParsing="false" onAction="#pay" prefHeight="35.0" prefWidth="175.0" text="Pay">
+                              <Button mnemonicParsing="false" onAction="#pay" prefHeight="28.0" prefWidth="143.0" text="Pay">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
@@ -464,7 +464,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Button mnemonicParsing="false" onAction="#setFinancialAid" prefHeight="35.0" prefWidth="175.0" text="Set">
+                              <Button mnemonicParsing="false" onAction="#setFinancialAid" prefHeight="35.0" prefWidth="84.0" text="Set">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>
