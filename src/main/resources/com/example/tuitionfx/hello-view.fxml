@@ -240,20 +240,7 @@
                                        </padding></Button>
                                  </children>
                               </HBox>
-                              <Label prefHeight="27.0" prefWidth="173.0" text="          Tuition Due:" GridPane.rowIndex="7">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="getTuitionTextField" editable="false" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </TextField>
-                              <Button mnemonicParsing="false" onAction="#setStudyAbroad" prefHeight="35.0" prefWidth="297.0" text="Set Study Abroad" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="285.0" text="Set Study Abroad" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
@@ -266,6 +253,23 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
+                              <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="189.0" text=" Tuition Due:" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Button>
+                              <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="0.0" text="\$" />
+                                    <TextField prefHeight="25.0" prefWidth="559.0" promptText="0.00" />
+                                 </children>
+                              </FlowPane>
                            </children>
                         </GridPane>
                      </children></AnchorPane>
