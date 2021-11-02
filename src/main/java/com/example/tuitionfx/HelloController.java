@@ -132,10 +132,57 @@ public class HelloController
             return;
 
         runProcessAddStudent(this.roster, addType, name, addMajor, intCredits, additionalInfo);
+        clearTabOne();
     }
 
 
-    //maybe use try catch exceptions
+    private void clearTabOne()
+    {
+
+        this.studentName.clear();
+        for(var toggle : this.major.getToggles())
+        {
+            toggle.setSelected(false);
+
+        }
+
+        for(var toggle : this.residentialStatus.getToggles())
+        {
+            toggle.setSelected(false);
+        }
+
+        for(var toggle : this.nonResidentOptions.getToggles())
+        {
+            toggle.setSelected(false);
+            ((RadioButton) toggle).setDisable(true);
+        }
+        for(var toggle : this.tristateState.getToggles())
+        {
+            toggle.setSelected(false);
+            ((RadioButton) toggle).setDisable(true);
+        }
+
+        this.isStudyAbroadCheckBox.setSelected(false);
+        this.isStudyAbroadCheckBox.setDisable(false);
+
+        this.creditHours.clear();
+        this.getTuitionTextField.clear();
+
+    }
+
+    private void clearTabTwo()
+    {
+        this.studentNamePaymentFinAid.clear();
+
+        for(var toggle : this.majorPaymentTab.getToggles())
+        {
+            toggle.setSelected(false);
+        }
+
+        this.paymentAmount.clear();
+        this.financialAidAmount.clear();
+
+    }
 
     /**
      * Method that checks for bad input within the Input for Add.
@@ -261,7 +308,7 @@ public class HelloController
      * Method that checks the bounds for the Min/Max of the credit limits.
      * @param intCredits the number of credits the student is taking
      */
-    //remove magic numberc
+
     private boolean checkMinMaxCredits(int intCredits) {
         if(intCredits < 0) {
             textArea.appendText("Credit hours cannot be negative.\n");
@@ -302,6 +349,8 @@ public class HelloController
             textArea.appendText("Student removed from the roster.\n");
         else
             textArea.appendText("Student is not in the roster.\n");
+
+        clearTabOne();
 
     }
     /**
@@ -432,6 +481,7 @@ public class HelloController
         else {
             textArea.appendText("Student not in the roster.\n");
         }
+        clearTabTwo();
 
     }
 
@@ -526,6 +576,7 @@ public class HelloController
         {
             textArea.appendText("Student not in the roster.\n");
         }
+        clearTabTwo();
     }
 
     /**
