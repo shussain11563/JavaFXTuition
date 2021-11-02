@@ -11,14 +11,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class TuitionApplication extends Application {
     /**
      * Method that runs the JavaFX loader commands and shows the applications.
      * @param stage object to show the application
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TuitionApplication.class.getResource("tuition-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Tuition Manager");
         stage.setScene(scene);
