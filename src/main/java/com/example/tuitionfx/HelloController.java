@@ -134,9 +134,6 @@ public class HelloController
         runProcessAddStudent(this.roster, addType, name, addMajor, intCredits, additionalInfo);
     }
 
-
-    //maybe use try catch exceptions
-
     /**
      * Method that checks for bad input within the Input for Add.
      */
@@ -156,8 +153,6 @@ public class HelloController
             return false;
         }
 
-        //needs more choices for nonresident and tuition
-        //RadioButton majorButton = (RadioButton) major.getSelectedToggle();
         RadioButton status = (RadioButton) this.residentialStatus.getSelectedToggle();
         if(status == null)
         {
@@ -261,7 +256,6 @@ public class HelloController
      * Method that checks the bounds for the Min/Max of the credit limits.
      * @param intCredits the number of credits the student is taking
      */
-    //remove magic numberc
     private boolean checkMinMaxCredits(int intCredits) {
         if(intCredits < 0) {
             textArea.appendText("Credit hours cannot be negative.\n");
@@ -338,7 +332,6 @@ public class HelloController
 
         for(var toggle : this.nonResidentOptions.getToggles())
         {
-            //uncheck box it
             toggle.setSelected(false);
             ((RadioButton) toggle).setDisable(disable);
         }
@@ -576,7 +569,7 @@ public class HelloController
         }
         catch (Exception e)
         {
-            //use isValid
+
             textArea.appendText("Invalid Payment Date\n");
             return false;
         }
@@ -649,6 +642,11 @@ public class HelloController
         return true;
     }
 
+    /**
+     * Method that outputs the tuition due for a student
+     * also checks for correct input for the given student
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void getTutionDue(ActionEvent event)
     {
@@ -681,6 +679,11 @@ public class HelloController
 
     }
 
+    /**
+     * Method that set the study abroad for an international student
+     * also checks for correct data for setting an international student to study abroad
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void setStudyAbroad(ActionEvent event)
     {
@@ -706,12 +709,5 @@ public class HelloController
         else{
             textArea.appendText("Couldn't find the international student.\n");
         }
-
-
-
     }
-
-
-
-
 }
