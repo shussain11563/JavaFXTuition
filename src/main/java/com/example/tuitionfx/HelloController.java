@@ -95,7 +95,6 @@ public class HelloController
         if(checkAddStudent())
         {
             name = this.studentName.getText().trim();
-            //addType =
             addType = ((RadioButton) this.residentialStatus.getSelectedToggle()).getText().trim();
             addMajor = Major.valueOf(((RadioButton) this.major.getSelectedToggle()).getText().trim());
             credits = this.creditHours.getText().trim();
