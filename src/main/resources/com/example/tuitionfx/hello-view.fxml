@@ -230,38 +230,60 @@
                                        </HBox.margin>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding></Button>
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Button>
                                     <Button mnemonicParsing="false" onAction="#removeStudent" prefHeight="35.0" prefWidth="340.0" text="Remove Student">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </HBox.margin>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding></Button>
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Button>
                                  </children>
                               </HBox>
-                              <Label prefHeight="27.0" prefWidth="173.0" text="          Tuition Due:" GridPane.rowIndex="7">
+                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="285.0" text="Set Study Abroad" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label text="          Study Abroad: " GridPane.rowIndex="8">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="getTuitionTextField" editable="false" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </TextField>
-                              <Button mnemonicParsing="false" onAction="#setStudyAbroad" prefHeight="35.0" prefWidth="297.0" text="Set Study Abroad" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </Button>
-                              <Label text="          Study Abroad: " GridPane.rowIndex="8">
+                              <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="0.0" text="\$" />
+                                    <TextField prefHeight="25.0" prefWidth="283.0" promptText="0.00">
+                                       <FlowPane.margin>
+                                          <Insets right="10.0" />
+                                       </FlowPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="286.0" text="Tuition Due">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </FlowPane>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="309.0" text="          Tuition Due:" textAlignment="CENTER" GridPane.rowIndex="7">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -416,6 +438,9 @@
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </Button>
                               <Label prefHeight="37.0" prefWidth="375.0" text="          Financial Aid Amount:                       $">
                                  <FlowPane.margin>
@@ -446,6 +471,9 @@
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </Button>
                            </children>
                         </FlowPane>
