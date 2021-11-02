@@ -163,7 +163,7 @@ public class HelloController
         }
 
         this.isStudyAbroadCheckBox.setSelected(false);
-        this.isStudyAbroadCheckBox.setDisable(false);
+        this.isStudyAbroadCheckBox.setDisable(true);
 
         this.creditHours.clear();
         this.getTuitionTextField.clear();
