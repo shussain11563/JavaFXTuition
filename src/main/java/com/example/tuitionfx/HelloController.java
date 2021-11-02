@@ -640,6 +640,11 @@ public class HelloController
         return true;
     }
 
+    /**
+     * Method that outputs the tuition due for a student
+     * also checks for correct input for the given student
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void getTutionDue(ActionEvent event)
     {
@@ -672,6 +677,11 @@ public class HelloController
 
     }
 
+    /**
+     * Method that set the study abroad for an international student
+     * also checks for correct data for setting an international student to study abroad
+     * @param event the event object that is connected and responds to the UI component
+     */
     @FXML
     void setStudyAbroad(ActionEvent event)
     {
@@ -697,12 +707,5 @@ public class HelloController
         else{
             textArea.appendText("Couldn't find the international student.\n");
         }
-
-
-
     }
-
-
-
-
 }
